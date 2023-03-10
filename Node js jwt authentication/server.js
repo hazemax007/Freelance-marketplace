@@ -20,7 +20,7 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-  .connect(process.env.MONGODB_URL, {
+  .connect(`mongodb+srv://mern-vercel:UtNf1BOi492rZpUc@mern-vercel.qm1pfek.mongodb.net/jwt-auth?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
