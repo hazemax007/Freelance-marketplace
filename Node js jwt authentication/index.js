@@ -5,7 +5,7 @@ const dbConfig = require("./app/config/db.config");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "https://react-jwt-authentication-ofnaxmko0-hazemax007.vercel.app"
 };
 
 app.use(cors(corsOptions));
