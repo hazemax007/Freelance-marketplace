@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://node-js-jwt-authentication-n89qxr5i7-hazemax007.vercel.app/api/auth/";
+const API_URL = "https://node-js-jwt-authentication-microservice-xkpg.vercel.app/api/auth/";
 
 class AuthService {
   login(username, password) {

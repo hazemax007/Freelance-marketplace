@@ -5,7 +5,7 @@ const dbConfig = require("./app/config/db.config");
 const app = express();
 
 var corsOptions = {
-  origin: "https://react-jwt-authentication-ofnaxmko0-hazemax007.vercel.app"
+  origin: "https://node-js-jwt-authentication-microservice.vercel.app"
 };
 
 app.use(cors(corsOptions));
