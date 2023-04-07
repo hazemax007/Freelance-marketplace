@@ -1,0 +1,117 @@
+<div class="updateProfile">
+    
+        <h2>Updating profile</h2>
+        <form #f="ngForm">
+            <div class="form">
+                
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                      <mat-form-field  class="example-width">
+                        <input matInput type="text" name="username" class="single-input" placeholder="Enter Username"
+                      [(ngModel)]="user.username" #username="ngModel" required minlength="6" maxlength="20">
+                      </mat-form-field>
+                      <div class="errorMessage">
+                        <div class="alert alert-danger" *ngIf="username.invalid && username.touched">
+                            <div *ngIf="username.errors?.['required']">username is a required field</div>
+                             <div *ngIf="username.errors?.['minlength']">Please provide a valid length superior to 6</div>
+                             <div *ngIf="username.errors?.['maxLength']">Please provide a valid length minimum to 20</div>
+                           </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <mat-form-field class="example-width">
+                        <input matInput type="text" name="email" class="single-input" placeholder="Enter Email"
+                      [(ngModel)]="user.email" #email="ngModel" required email>
+                      </mat-form-field>
+                      <div class="errorMessage">
+                        <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                            <div *ngIf="email.errors?.['required']">email is a required field</div>
+                             <div *ngIf="email.errors?.['email']">Please provide a valid email</div>
+                           </div>
+                      </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput type="text" name="firstname" class="single-input" placeholder="Enter Firstname"
+                        [(ngModel)]="user.firstname" #firstname="ngModel" required>
+                        </mat-form-field>
+                        <div class="errorMessage">
+                            <div class="alert alert-danger" *ngIf="firstname.invalid && firstname.touched">
+                                <div *ngIf="firstname.errors?.['required']">firstname is a required field</div>
+                            </div>
+                        </div>
+                      </div>
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput type="text" name="lastname" class="single-input" placeholder="Enter Lastname"
+                        [(ngModel)]="user.lastname" #lastname="ngModel" required>
+                        </mat-form-field>
+                        <div class="errorMessage">
+                            <div class="alert alert-danger" *ngIf="lastname.invalid && lastname.touched">
+                                <div *ngIf="lastname.errors?.['required']">lastname is a required field</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput type="text" name="phonenumber" class="single-input" placeholder="Enter Phonenumber"
+                        [(ngModel)]="user.phonenumber" #phonenumber="ngModel" required minlength="8">
+                        </mat-form-field>
+                        <div class="errorMessage">
+                            <div class="alert alert-danger" *ngIf="phonenumber.invalid && phonenumber.touched">
+                                <div *ngIf="phonenumber.errors?.['required']">phone number is a required field</div>
+                                <div *ngIf="phonenumber.errors?.['minlength']">phone number should be at least 8 numbers</div>
+                            </div>
+                        </div>
+                      </div>
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput type="text" name="address" class="single-input" placeholder="Enter Address"
+                        [(ngModel)]="user.address" #address="ngModel" required>
+                        </mat-form-field>
+                        <div class="errorMessage">
+                            <div class="alert alert-danger" *ngIf="address.invalid && address.touched">
+                                <div *ngIf="address.errors?.['required']">address is a required field</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker"  name="birthdate" class="single-input" 
+                        [(ngModel)]="user.birthdate" #birthdate="ngModel" required>
+                        </mat-form-field>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <div class="errorMessage">
+                            <div class="alert alert-danger" *ngIf="birthdate.invalid && birthdate.touched">
+                                <div *ngIf="birthdate.errors?.['required']">Birthdate is a required field</div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="file" name="image" (change)="onFileSelected($event)">
+                      </div>
+                </div>
+                
+            </div>
+            <br>
+            <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="onSubmit()" >
+                Save
+              </button>
+        </form>
+        
+    
+</div>
+

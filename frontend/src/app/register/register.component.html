@@ -1,0 +1,105 @@
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form class="register-form" 
+            *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate>
+                <h2 style="color: indigo;">Register now</h2>
+                <p>
+                    <mat-form-field appearance="outline" class="example-width">
+                        <mat-label>Enter your username</mat-label>
+                        <input matInput 
+                        name="username" 
+                        [(ngModel)]="form.username"
+                        #username="ngModel"
+                        required>
+                        <mat-error *ngIf="username.invalid">
+                          {{getErrorMessageUsername()}}
+                      </mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline" class="example-width">
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput 
+                        name="email"
+                        [(ngModel)]="form.email"
+                        #email="ngModel"
+                        required>
+                        <mat-error *ngIf="email.invalid">
+                            {{getErrorMessageEmail()}}
+                        </mat-error>
+                      </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline" class="example-width">
+                        <mat-label>Enter your Password</mat-label>
+                        <input
+                        id="password"
+                          matInput
+                          type="password"
+                          [type]="hidePassword ? 'password' : 'text'"
+                          name="password"
+                          [(ngModel)]="form.password"
+                          #password="ngModel"
+                          required/>
+                        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                        <mat-error *ngIf="password.invalid">
+                          {{getErrorMessagePassword()}}
+                        </mat-error>
+                      </mat-form-field>
+                </p>
+                <!--<p>
+                    <mat-form-field appearance="outline" class="example-width">
+                        <mat-label>Confirm Password</mat-label>
+                        <input
+                          id="confirmPassword"
+                          matInput
+                          placeholder="Confirm your password..."
+                          [formControlName]="'confirmPassword'"
+                          type="password"
+                          [type]="hideConfirmPassword ? 'password' : 'text'"
+                        />
+                        <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+                            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                        <mat-error *ngIf="registerGroup.get('confirmPassword')!.hasError('required')">
+                          Password confirmation is required!
+                        </mat-error>
+                        <mat-error *ngIf="registerGroup.get('confirmPassword')!.hasError('minlength')">
+                          Password should be longer than 8 characters!
+                        </mat-error>
+                        <mat-error *ngIf="registerGroup.get('confirmPassword')!.hasError('not_matching')">
+                          The password doesn't match!
+                        </mat-error>
+                      </mat-form-field>
+                </p>-->
+
+                <button class="signUpButton" mat-raised-button color="primary">Sign Up</button>
+                <div class="container">
+                  <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                    Signup failed!<br />{{ errorMessage }}
+                  </div>
+                </div>
+            </form> 
+            <div class="container">
+              <div class="alert alert-success" *ngIf="isSuccessful">
+                Your registration is successful!
+              </div>  
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="image">
+                <img src="../../assets/img/jobs.jpg" alt="image design">
+            </div>
+            <br>
+            <br>
+            <h2>If you already have an account <a href="" routerLink="/login" style="color: indigo;">Login here</a></h2>
+        </div>
+    </div>
+</div>
