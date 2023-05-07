@@ -3,5 +3,17 @@
 }
 .searchButton{
     margin-top: 10px;
-    margin-left: 50px;
+    
+}
+
+button{
+    width: 200px;
+    height: 40px;
+}
+
+.filterBlock{
+    margin-left: 20%;
+}
+mat-form-field{
+    width: 100%;
 }

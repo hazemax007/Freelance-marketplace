@@ -1,0 +1,28 @@
+<div class="listApplications">
+  <mat-card><h2 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold; font-style: italic; color: coral;">My Applications</h2></mat-card>
+  <div class="applicationTable">
+    <mat-card>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><mat-card>Start Date</mat-card></th>
+            <th><mat-card>Mission</mat-card></th>
+            <th><mat-card>Actions</mat-card></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let application of listApplications">
+            <td> <mat-card>{{application.startDate | date}}</mat-card> </td>
+            <td> <mat-card>{{application.project.title}}</mat-card> </td>
+            <td>
+              <button mat-raised-button color="warn" (click)="deleteApplication(application._id)">
+                <i class="fa-solid fa-xmark fa-beat fa-xl"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </div>
+</div>

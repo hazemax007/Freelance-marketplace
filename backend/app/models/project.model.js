@@ -7,9 +7,19 @@ const mongoose = require("mongoose");
           title: String,
           description: String,
           field: String,
-          technology:String,
-          requirments:String,
-          duration:Number
+          technology: String,
+          requirments: String,
+          duration:Number,
+          user:{
+            type:mongoose.Types.ObjectId,
+            ref:"User" 
+          },
+          applications: [
+            {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "application"
+            }
+          ]
         },
         { timestamps: true }
       )

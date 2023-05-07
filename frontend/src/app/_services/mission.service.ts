@@ -31,4 +31,20 @@ export class MissionService {
   deleteMission(id:any):Observable<void>{
     return this.http.delete<void>(API_URL+id)
   }
+
+  findByPreferences(field: any,technology:any): Observable<Mission[]> {
+    return this.http.get<Mission[]>(`${API_URL}?field=${field}&technology=${technology}`);
+  }
+
+  findByTech(technology: any): Observable<Mission[]> {
+    return this.http.get<Mission[]>(`${API_URL}?technology=${technology}`);
+  }
+
+  findByDuration(duration: any): Observable<Mission[]> {
+    return this.http.get<Mission[]>(`${API_URL}?duration=${duration}`);
+  }
+
+  assignProject(projectId:any,userId:any,formData:FormData){
+    return this.http.post(API_URL+ 'assignProject/'+projectId+'/'+userId,formData)
+  }
 }

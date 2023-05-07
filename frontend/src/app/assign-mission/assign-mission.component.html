@@ -1,0 +1,14 @@
+<div class="assignMissionForm">
+    <h2>Assign Mission</h2>
+    <div>
+      <mat-form-field>
+        <mat-label for="user-select">Select User:</mat-label>
+        <mat-select id="user-select" [(ngModel)]="selectedUserId">
+        <mat-option *ngFor="let user of users" [value]="user._id">{{ user.username }}</mat-option>
+      </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="warn" (click)="assignProject()">Assign Project</button>
+    </div>
+</div>

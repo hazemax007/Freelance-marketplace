@@ -27,9 +27,26 @@ import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MissionComponent } from './mission/mission.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
-import { CandidateComponent } from './candidate/candidate.component';
 import { MissionDetailsComponent } from './mission-details/mission-details.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatTableModule } from '@angular/material/table';
+import { AddMissionComponent } from './add-mission/add-mission.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditMissionComponent } from './edit-mission/edit-mission.component'  
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApplicationComponent } from './application/application.component';
+import { ListApplicationComponent } from './list-application/list-application.component';
+import { ApplicationDetailsComponent } from './application-details/application-details.component';
+import { EmailFormComponent } from './email-form/email-form.component';
+import { ArchiveFormComponent } from './archive-form/archive-form.component';
+import { ImageComponent } from './image/image.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component'
+import { Chart } from 'chart.js';
+import { AssignMissionComponent } from './assign-mission/assign-mission.component';
+import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
+import { RatingFormComponent } from './rating-form/rating-form.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -44,8 +61,21 @@ import { MissionDetailsComponent } from './mission-details/mission-details.compo
     ProfileComponent,
     MissionComponent,
     UpdateProfileComponent,
-    CandidateComponent,
     MissionDetailsComponent,
+    DashboardComponent,
+    AddMissionComponent,
+    EditMissionComponent,
+    ApplicationComponent,
+    ListApplicationComponent,
+    ApplicationDetailsComponent,
+    EmailFormComponent,
+    ArchiveFormComponent,
+    ImageComponent,
+    AdminPanelComponent,
+    AssignMissionComponent,
+    ListIntercontratsComponent,
+    RatingFormComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +97,10 @@ import { MissionDetailsComponent } from './mission-details/mission-details.compo
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    Ng2SearchPipeModule,
+    MatTableModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

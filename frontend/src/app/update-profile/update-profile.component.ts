@@ -21,14 +21,14 @@ export class UpdateProfileComponent implements OnInit {
     birthdate:new Date(),
     phonenumber:'',
     address:'',
-    image:'',
     roles:[]
   }
   imageUrl: string;
-  selectedFile:File
+  selectedFile:File | null = null
   id:any
   username = new FormControl('',[Validators.required,Validators.minLength(6)])
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email])
+  password = new FormControl('',Validators.required)
   firstname = new FormControl('',[Validators.required])
   lastname = new FormControl('',[Validators.required])
   birthdate = new FormControl('',[Validators.required])
@@ -51,7 +51,7 @@ export class UpdateProfileComponent implements OnInit {
       }, error => console.log(error));
   }
 
-  onFileSelected(event:any) {
+  onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 

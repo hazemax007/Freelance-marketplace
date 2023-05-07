@@ -1,0 +1,19 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Real-time Chat App</h2>
+  </div>
+
+  <div class="chat-messages">
+    <div *ngFor="let message of messages" class="message">
+      <p class="message-sender">{{ message.sender }}:</p>
+      <p class="message-text">{{ message.text }}</p>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" placeholder="Your name" [(ngModel)]="sender" name="sender" required>
+    <input type="text" placeholder="Type your message" [(ngModel)]="text" name="text" required>
+    <button type="button" (click)="sendMessage()">Send</button>
+  </div>
+</div>
+

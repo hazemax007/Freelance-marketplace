@@ -3,6 +3,9 @@ import { Mission } from '../_models/Mission';
 import { MissionService } from '../_services/mission.service';
 import { Observable } from 'rxjs';
 import { error } from 'console';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApplicationComponent } from '../application/application.component';
 
 @Component({
   selector: 'app-mission',
@@ -14,7 +17,10 @@ export class MissionComponent implements OnInit {
   listMissions:Mission[]
   currentMission: Mission={}
   currentIndex = -1
-  title = ''
+  category :string  = ''
+  technology:string = ''
+  displayedColumns: string[] = ['Title', 'Category', 'Tools', 'Duration'];
+  
 
   constructor(private missionService:MissionService) { }
 
@@ -40,11 +46,29 @@ export class MissionComponent implements OnInit {
     this.currentIndex = -1;
   }
 
-  setActiveTutorial(mission: Mission, index: number): void {
+  setActiveMission(mission: Mission, index: number): void {
     this.currentMission = mission;
     this.currentIndex = index;
   }
 
-  
+  search(): void {
+    this.currentMission = {};
+    this.currentIndex = -1;
+
+    this.missionService.findByPreferences(this.category,this.technology)
+      .subscribe({
+        next: (data) => {
+          this.listMissions = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+
+  sendData(event:any){
+    console.log(event.target.value)
+  }
+
 
 }

@@ -1,7 +1,8 @@
 <div class="updateProfile">
     
-        <h2>Updating profile</h2>
-        <form #f="ngForm">
+        <h2 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bold; font-style: italic; color: coral;">Updating profile</h2>
+        <form #f="ngForm" enctype="multipart/form-data">
             <div class="form">
                 
                 <div class="row g-3">
@@ -30,6 +31,18 @@
                            </div>
                       </div>
                     </div>
+                    <div class="col-sm-4">
+                        <mat-form-field class="example-width">
+                          <input matInput type="password" name="password" class="single-input" placeholder="Enter Password"
+                        [(ngModel)]="user.password" #password="ngModel" required>
+                        </mat-form-field>
+                        <div class="errorMessage">
+                          <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                              <div *ngIf="password.errors?.['required']">Password is a required field</div>
+                             </div>
+                        </div>
+                        {{user.password}}
+                      </div>
                 </div>
                 <br>
                 <br>
@@ -100,14 +113,11 @@
                             </div>
                           </div>
                       </div>
-                      <div class="col-sm-4">
-                        <input type="file" name="image" (change)="onFileSelected($event)">
-                      </div>
                 </div>
                 
             </div>
             <br>
-            <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="onSubmit()" >
+            <button mat-raised-button color="warn" [disabled]="f.invalid" (click)="onSubmit()" >
                 Save
               </button>
         </form>

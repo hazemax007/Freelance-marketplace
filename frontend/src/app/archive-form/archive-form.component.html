@@ -1,0 +1,31 @@
+<div class="archiveForm">
+    <div mat-dialog-title>
+        <h1 style="color: coral;">Application form for mission {{data.missionId}} </h1>
+    </div>
+    <form [formGroup]="archiveForm" (ngSubmit)="onSubmit()" novalidate>
+        <br>
+        <div class="row">
+            <div class="col-sm-8">
+                <mat-form-field appearance="outline">
+                    <mat-label>Notice</mat-label>
+                    <input 
+                    matInput 
+                    type="text"
+                    formControlName="remarque">
+                    <mat-error *ngIf="archiveForm.get('remarque')!.hasError('required')">
+                        Notice is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <button 
+        mat-raised-button 
+        color="warn" 
+        [mat-dialog-close]="false">Cancel</button>
+        &nbsp;&nbsp;
+        <button 
+        mat-raised-button 
+        color="warn">Submit to archive</button>
+    </form>
+</div>
+

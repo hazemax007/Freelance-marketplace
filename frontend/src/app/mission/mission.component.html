@@ -1,27 +1,26 @@
 <div class="listMissions">
     <mat-card>
-        <div class="row">
-            <div class="col-3">
-                <mat-form-field appearance="outline" class="example-width">
-                    <mat-label>field</mat-label>
-                    <input matInput type="text">
-                </mat-form-field>
-            </div>
-            <div class="col-3">
-                <mat-form-field appearance="outline" class="example-width">
-                    <mat-label>Category</mat-label>
-                    <input matInput type="text">
-                </mat-form-field>
-            </div>
-            <div class="col-3">
-                <mat-form-field appearance="outline" class="example-width">
-                    <mat-label>duration</mat-label>
-                    <input matInput type="text">
-                </mat-form-field>
-            </div>
-            <div class="col-3">
-                <div class="searchButton">
-                    <button mat-flat-button color="primary">Search</button>
+        <div class="filterBlock">
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="outline" class="example-width">
+                        <mat-label>Category</mat-label>
+                        <input matInput type="text" name="category" [(ngModel)]="category">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="outline" class="example-width">
+                        <mat-label>Technologies and tools</mat-label>
+                        <input matInput type="text" name="technology" [(ngModel)]="technology">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <div class="searchButton">
+                        <button mat-flat-button color="warn" (click)="search()">
+                            Filter jobs
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,20 +28,19 @@
       <mat-card>
         <div class="row">
             <div class="col-3">
-                <mat-card>
-                    <mat-list role="list">
-                        <mat-list-item role="listitem"
-                        *ngFor="let mission of listMissions; let i = index"
-                        [class.active]="i == currentIndex"
-                        (click)="setActiveTutorial(mission, i)">  {{mission.title}}  </mat-list-item>
-                      </mat-list>
+                <mat-card *ngFor="let mission of listMissions;let i = index"
+                [class.active]="i == currentIndex"
+                (click)="setActiveMission(mission, i)">
+                <mat-card-content>
+                    {{mission.title}}
+                </mat-card-content>
+                    
                 </mat-card>
             </div>
             <div class="col-9">
                 <app-mission-details [viewMode]="true" [currentMission]="currentMission">
-            </app-mission-details>
+                </app-mission-details>
             </div>
         </div>
-      </mat-card>
-    
+      </mat-card>  
 </div>

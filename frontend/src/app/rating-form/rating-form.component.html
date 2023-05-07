@@ -1,0 +1,26 @@
+<div class="rating">
+    <mat-card>
+        <div class="row">
+            
+            <h2>  {{intercontrat?.username}}  </h2>
+            <div class="col-sm-6">
+                 <h3>  {{intercontrat?.firstname}} </h3>
+                 <h3> {{intercontrat?.lastname}}  </h3>
+                 <h3> {{intercontrat?.email}}  </h3>
+            </div>
+            <div class="col-sm-6">
+                <h3>  {{intercontrat?.birthdate}}  </h3>
+                <h3>  {{intercontrat?.phonenumber}}  </h3>
+                <h3>  {{intercontrat?.address}}  </h3>
+            </div>
+        </div>
+        <div class="row">
+            <form (submit)="onSubmit()">
+                <mat-form-field>
+                    <input matInput name="newRating" type="number" [(ngModel)]="newRating">
+                </mat-form-field>
+                <button mat-raised-button color="warn">Submit rate</button>
+            </form>
+        </div>
+    </mat-card>
+</div>

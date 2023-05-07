@@ -11,10 +11,23 @@ const User = mongoose.model(
     birthdate: Date,
     phonenumber: String,
     address: String,
-    profileImage:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref: "Image"
+    intercontrat: {
+      type: Boolean,
+      default: false
     },
+    image: String,
+    applications: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref : "application"
+      }
+    ],
+    projects: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "project"
+      }
+    ],
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

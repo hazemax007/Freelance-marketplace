@@ -25,5 +25,7 @@ module.exports = app => {
     // Delete all Projects
     router.delete("/", projects.deleteAll);
 
+    router.post('/assignProject/:projectId/:userId',projects.assignProject)
+
     app.use('/api/test/projects', router);
 };

@@ -1,4 +1,5 @@
 const db = require("../models");
+const User = require("../models/user.model");
 const Project = db.project;
 
 // Create and Save a new Project
@@ -36,8 +37,12 @@ exports.create = (req, res) => {
 
 // Retrieve all Projects from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+    const field = req.query.field;
+    const technology = req.query.technology;
+    var condition = field ? { field: { $regex: new RegExp(field), $options: "i" } } : {} &&
+                  technology ? { technology: { $regex: new RegExp(technology), $options: "i" } } : {}  ;
+
+    var condition1 = 
 
   Project.find(condition)
     .then(data => {
@@ -135,4 +140,27 @@ exports.deleteAll = (req, res) => {
 // Find all published Projects
 exports.findAllPublished = (req, res) => {
   
+};
+
+exports.assignProject = async (req, res) => {
+  const { projectId } = req.params;
+  const { userId } = req.params;
+  
+  // Check that the project and user exist
+  const project = await Project.findById(projectId);
+  const user = await User.findById(userId);
+  if (!project || !user) {
+    return res.status(404).json({ message: 'Project or user not found' });
+  }
+
+  // Assign the project to the user
+  user.projects.push(project);
+  await user.save();
+
+  if(user.projects.includes(project)){
+    return res.status(401).json({ message: 'Project already assigned' });
+  }else{
+    return res.status(200).json({ message: 'Project assigned successfully' });
+  }
+
 };

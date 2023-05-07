@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Mission } from '../_models/Mission';
 import { MissionService } from '../_services/mission.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApplicationComponent } from '../application/application.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mission-details',
@@ -13,6 +15,7 @@ export class MissionDetailsComponent implements OnInit {
   @Input() viewMode = false;
 
   @Input() currentMission: Mission = {
+    _id:null,
     title: '',
     description: '',
     field:'',
@@ -23,7 +26,8 @@ export class MissionDetailsComponent implements OnInit {
   
   message = '';
   
-  constructor(private missionService:MissionService, private route:ActivatedRoute) { }
+  constructor(private missionService:MissionService, private route:ActivatedRoute,
+    private dialog:MatDialog,private router:Router) { }
 
   ngOnInit(): void {
     if (!this.viewMode) {
@@ -41,6 +45,22 @@ export class MissionDetailsComponent implements OnInit {
         },
         error: (e) => console.error(e)
       });
+  }
+
+  openApplicationForm(missionId:any) {
+    const dialogRef = this.dialog.open(ApplicationComponent,
+      {
+        data: {
+          missionId:missionId
+        }
+      });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.router.navigate(["/missions"])
+        }
+      },
+    });
   }
 
 }

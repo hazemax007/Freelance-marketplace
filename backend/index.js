@@ -2,11 +2,17 @@ const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
 
+
 const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
 
 var corsOptions = {
   origin: "*"
 };
+
+app.use(express.static(__dirname + '/frontend'));
 
 app.use(cors(corsOptions));
 
@@ -18,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 const Role = db.role;
+const Message = db.message
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -35,13 +42,18 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to welyne application." });
 });
 
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/project.routes")(app);
+require("./app/routes/application.routes")(app);
+require("./app/routes/archive.routes")(app);
+require("./app/routes/image.routes")(app);
+require("./app/routes/rating.routes")(app);
+require("./app/routes/message.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -102,6 +114,40 @@ app.listen(PORT, () => {
         console.log("added 'company' to roles collection");
       });
     }
+  });
+
+  app.post('/api/test/messages', (req, res) => {
+    const { sender, text } = req.body;
+    const newMessage = new Message({ sender, text });
+  
+    newMessage.save((err, savedMessage) => {
+      if (err) {
+        console.error('Error saving message:', err);
+        res.status(500).send('An error occurred while saving the message.');
+      } else {
+        io.emit('message', savedMessage);
+        res.status(201).json(savedMessage);
+      }
+    });
+  });
+
+  app.get('/api/test/messages', (req, res) => {
+    Message.find({}, (err, messages) => {
+      if (err) {
+        console.error('Error retrieving messages:', err);
+        res.status(500).send('An error occurred while retrieving messages.');
+      } else {
+        res.json(messages);
+      }
+    });
+  });
+  
+  io.on('connection', (socket) => {
+    console.log('User connected');
+  
+    socket.on('disconnect', () => {
+      console.log('User disconnected');
+    });
   });
 
   

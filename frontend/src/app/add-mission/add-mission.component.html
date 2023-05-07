@@ -1,0 +1,77 @@
+<div class="addMission">
+    <div class="missionForm">
+        <form [formGroup]="missionForm" (ngSubmit)="onSubmit()" novalidate>
+            <br>
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input 
+                matInput 
+                type="text"
+                formControlName="title">
+                <mat-error *ngIf="missionForm.get('title')!.hasError('required')">
+                    Title is required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <input 
+                matInput 
+                type="text"
+                formControlName="field">
+                <mat-error *ngIf="missionForm.get('field')!.hasError('required')">
+                    Category is required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Technology</mat-label>
+                <input 
+                matInput 
+                type="text"
+                formControlName="technology">
+                <mat-error *ngIf="missionForm.get('technology')!.hasError('required')">
+                    Technology is required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Duration</mat-label>
+                <input 
+                matInput 
+                type="number"
+                formControlName="duration">
+                <mat-error *ngIf="missionForm.get('duration')!.hasError('required')">
+                    Duration is required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Requirements</mat-label>
+                <input 
+                matInput 
+                type="text"
+                formControlName="requirments">
+                <mat-error *ngIf="missionForm.get('requirments')!.hasError('required')">
+                    Requirements is required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea 
+                matInput 
+                type="text"
+                formControlName="description">
+                </textarea>
+                <mat-error *ngIf="missionForm.get('description')!.hasError('required')">
+                    Description is required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button 
+            mat-raised-button 
+            color="warn">Add new mission</button>
+        </form>
+    </div>
+</div>

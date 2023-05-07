@@ -1,34 +1,36 @@
-<mat-toolbar color="primary" routerLinkActive="active">
+
+  <mat-toolbar color="warn" routerLinkActive="active">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" routerLink="/home">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Welyne</span>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" 
-    routerLink="/missions" *ngIf="isLoggedIn">
-      <mat-label>Missions</mat-label>
+    <button mat-icon-button class="missionButton" routerLink="/missions" *ngIf="isLoggedIn">
+      <mat-label>Mission</mat-label>
     </button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" 
-    routerLink="/candidates" *ngIf="isLoggedIn && showAdminBoard">
-      <mat-label>Candidates</mat-label>
+    <button mat-icon-button class="candidateButton" routerLink="/listApplications" *ngIf="isLoggedIn">
+      <mat-label>Applications</mat-label>
+    </button>
+    <button mat-icon-button class="intercontratButton" routerLink="/listIntercontrats" *ngIf="isLoggedIn && showAdminBoard">
+      <mat-label>Intercontracts</mat-label>
     </button>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" 
-    (click)="goToProfile(currentUser.id)" *ngIf="isLoggedIn">
+    <button mat-icon-button class="chatButton" routerLink="/chat" *ngIf="isLoggedIn">
+      <mat-label>Chat</mat-label>
+    </button>
+    <button mat-icon-button class="dashboardButton" routerLink="/dashboard" *ngIf="isLoggedIn && showAdminBoard">
+      <mat-label>Dashboard</mat-label>
+    </button>
+    <button mat-icon-button class="profileButton" (click)="goToProfile(currentUser.id)" *ngIf="isLoggedIn">
       <mat-label> profile </mat-label>
     </button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" 
-    (click)="logout()" *ngIf="isLoggedIn">
+    <button mat-icon-button class="logoutButton" (click)="logout()" *ngIf="isLoggedIn">
       <mat-label>Logout</mat-label>
     </button>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" 
-    routerLink="/login" *ngIf="!isLoggedIn">
+    <button mat-icon-button class="loginButton" routerLink="/login" *ngIf="!isLoggedIn">
       <mat-label>Login</mat-label>
     </button>
     &nbsp;&nbsp;&nbsp;
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" 
+    <button mat-icon-button class="registerButton" aria-label="Example icon-button with share icon" 
     routerLink="/register" *ngIf="!isLoggedIn"> 
         <mat-label>Register</mat-label>
     </button>

@@ -1,4 +1,38 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
+
+.missionButton {
+  margin-left: 20px;
+}
+
+.candidateButton{
+  margin-left: 20px;
+}
+
+.intercontratButton{
+  margin-left: 50px;
+}
+
+.dashboardButton{
+  margin-left: 10px;
+}
+
+.profileButton{
+  margin-left: 45px;
+}
+
+.logoutButton {
+  margin-left: 20px;
+}
+
+.loginButton{
+  margin-left: 1080px;
+}
+
+.registerButton{
+  margin-left: 20px;
+}
+
+
   

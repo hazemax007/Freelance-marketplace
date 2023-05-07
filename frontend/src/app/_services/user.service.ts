@@ -17,7 +17,7 @@ export class UserService {
     return this.http.get(API_URL)
   }
 
-  public updateUser(user: User,id:any): Observable<User> {
+  public updateUser(user:User,id:any): Observable<User> {
     return this.http.put<User>(API_URL + id , user);
   }
 
@@ -27,6 +27,22 @@ export class UserService {
 
   getUserById(id:any){
     return this.http.get<User>(API_URL + id);
+  }
+
+  defineIntercontrat(id:any){
+    return this.http.post(API_URL + "intercontrat/" + id,{})
+  }
+
+  getAllIntercontrats():Observable<any>{
+    return this.http.get(API_URL + 'intercontrat/getAll')
+  }
+
+  getIntercontratById(id:any){
+    return this.http.get(API_URL + 'getIntercontrat/' + id)
+  }
+
+  deleteIntercontrat(id:any){
+    return this.http.delete(API_URL + 'deleteIntercontrat/' + id)
   }
 
 }
