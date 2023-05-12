@@ -42,11 +42,12 @@ import { EmailFormComponent } from './email-form/email-form.component';
 import { ArchiveFormComponent } from './archive-form/archive-form.component';
 import { ImageComponent } from './image/image.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component'
-import { Chart } from 'chart.js';
 import { AssignMissionComponent } from './assign-mission/assign-mission.component';
 import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
 import { RatingFormComponent } from './rating-form/rating-form.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatUsernameComponent } from './chat-username/chat-username.component';
+
 
 
 
@@ -76,6 +77,7 @@ import { ChatComponent } from './chat/chat.component';
     ListIntercontratsComponent,
     RatingFormComponent,
     ChatComponent,
+    ChatUsernameComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +103,7 @@ import { ChatComponent } from './chat/chat.component';
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

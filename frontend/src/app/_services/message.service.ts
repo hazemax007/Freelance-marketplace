@@ -1,23 +1,49 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Message } from '../_models/Message';
 import { Observable } from 'rxjs';
+import { Socket, io } from 'socket.io-client';
 
-const API_URL = 'http://localhost:8080/api/test/messages';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  constructor(private http:HttpClient) { }
+  private socket: Socket;
+  private url = 'http://localhost:8080'; // your server local path
 
-  getMessages():Observable<any[]>{
-    return this.http.get<any[]>(API_URL)
+
+  constructor() { 
+    this.socket = io(this.url, {transports: ['websocket', 'polling', 'flashsocket']});
   }
 
-  postMessage(sender:any,text:any):Observable<Message>{
-    return this.http.post<Message>(API_URL,{ sender, text })
+  joinRoom(data:any): void {
+    this.socket.emit('join', data);
+  }
+
+  sendMessage(data:any): void {
+    this.socket.emit('message', data);
+  }
+
+  getMessage(): Observable<any> {
+    return new Observable<{user: string, message: string}>(observer => {
+      this.socket.on('new message', (data) => {
+        observer.next(data);
+      });
+
+      return () => {
+        this.socket.disconnect();
+      }
+    });
+  }
+
+  getStorage() {
+    const storage: string = localStorage.getItem('chats');
+    return storage ? JSON.parse(storage) : [];
+  }
+
+  setStorage(data:any) {
+    localStorage.setItem('chats', JSON.stringify(data));
   }
   
 }

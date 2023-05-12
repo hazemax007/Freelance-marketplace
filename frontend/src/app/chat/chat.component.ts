@@ -1,53 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from '../_services/message.service';
-import { Message } from '../_models/Message';
-import { Socket } from 'socket.io-client';
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { io } from 'socket.io-client';
+import { TokenStorageService } from '../_services/token-storage.service';
+
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-  messages: Message[] = [];
-  sender: string = '';
-  text: string = '';
-  socket: Socket
+export class ChatComponent implements OnInit{
 
-  constructor(private messageService: MessageService) { 
+  messages: any[] = [];
+  socket: any;
+  text: any;
+  userId:any
+  
+  constructor(private messageService:MessageService,private tokenService:TokenStorageService) {
+    this.socket = io(); 
   }
 
   ngOnInit(): void {
-    this.getMessages()
-    this.socket.on('message', (message: Message) => {
+    this.userId = this.tokenService.getUser().id
+    this.socket.on('chat message', (message: any) => {
       this.messages.push(message);
     });
   }
 
-  getMessages(): void {
-    this.messageService.getMessages().subscribe(
-      (messages: Message[]) => {
-        this.messages = messages;
+  sendMessage(text: string, userId: any) {
+    this.messageService.sendMessage(text, userId).subscribe(
+      (response: any) => {
+        console.log('Message sent:', response);
       },
-      (error) => {
-        console.error('Error retrieving messages:', error);
+      (error: any) => {
+        console.error('Failed to send message:', error);
       }
     );
   }
 
-  sendMessage(): void {
-    if (this.sender && this.text) {
-      this.messageService.postMessage(this.sender, this.text).subscribe(
-        (newMessage: Message) => {
-          this.messages.push(newMessage);
-          this.sender = '';
-          this.text = '';
-          this.socket.emit('message', newMessage);
-        },
-        (error) => {
-          console.error('Error sending message:', error);
-        }
-      );
-    }
-  }
 }

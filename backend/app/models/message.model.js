@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
       new mongoose.Schema(
         {
           text:String,
-          sender:String,
           timestamp: { type: Date, default: Date.now },
         },
       )

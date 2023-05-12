@@ -4,15 +4,15 @@ const dbConfig = require("./app/config/db.config");
 
 
 const app = express();
-const http = require('http').createServer(app);
+const http = require('http').Server(app);
 const io = require('socket.io')(http);
+
 
 
 var corsOptions = {
   origin: "*"
 };
 
-app.use(express.static(__dirname + '/frontend'));
 
 app.use(cors(corsOptions));
 
@@ -25,6 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 const Message = db.message
+const mongoURL = 'mongodb://localhost:27017'; // Replace with your MongoDB connection string
+const dbName = 'Welyne'; // Replace with your database name
+
+
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -116,39 +120,17 @@ app.listen(PORT, () => {
     }
   });
 
-  app.post('/api/test/messages', (req, res) => {
-    const { sender, text } = req.body;
-    const newMessage = new Message({ sender, text });
-  
-    newMessage.save((err, savedMessage) => {
-      if (err) {
-        console.error('Error saving message:', err);
-        res.status(500).send('An error occurred while saving the message.');
-      } else {
-        io.emit('message', savedMessage);
-        res.status(201).json(savedMessage);
-      }
-    });
-  });
-
-  app.get('/api/test/messages', (req, res) => {
-    Message.find({}, (err, messages) => {
-      if (err) {
-        console.error('Error retrieving messages:', err);
-        res.status(500).send('An error occurred while retrieving messages.');
-      } else {
-        res.json(messages);
-      }
-    });
-  });
-  
   io.on('connection', (socket) => {
-    console.log('User connected');
-  
-    socket.on('disconnect', () => {
-      console.log('User disconnected');
+    socket.on('join', (data) => {
+        socket.join(data.room);
+        socket.broadcast.to(data.room).emit('user joined');
     });
-  });
 
-  
+    socket.on('message', (data) => {
+        io.in(data.room).emit('new message', {user: data.user, message: data.message});
+    });
+});
+
+
+
 }
