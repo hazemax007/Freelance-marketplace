@@ -11,6 +11,8 @@ const User = mongoose.model(
     birthdate: Date,
     phonenumber: String,
     address: String,
+    googleId:String,
+    displayName:String,
     intercontrat: {
       type: Boolean,
       default: false

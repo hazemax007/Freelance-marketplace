@@ -50,16 +50,6 @@
                 <br>
                 <br>
                 <button class="signUpButton" mat-raised-button color="warn">Sign In</button>
-                <br>
-                <br>
-                <br>
-                <br>
-                <button class="signUpButton" mat-raised-button color="warn">Login with google</button>
-                <br>
-                <br>
-                <br>
-                <br>
-                <button class="signUpButton" mat-raised-button color="warn">Login with linkedin</button>
                 <div class="form-group">
                     <div
                       class="alert alert-danger"
@@ -69,7 +59,13 @@
                       Login failed: {{ errorMessage }}
                     </div>
                   </div>
-            </form>   
+            </form>
+            <br><br>
+            <button class="signUpButton" mat-raised-button *ngIf="!isLoggedIn">
+              <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
+              Login with google</button>
+            <br><br>
+            <button class="signUpButton" mat-raised-button color="warn" *ngIf="!isLoggedIn">Login with linkedin</button>   
         </div>
         <div class="col-sm-6" *ngIf="!isLoggedIn">
             <div class="image">
@@ -83,6 +79,6 @@
 </div>
 <div class="container">
     <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in as {{ roles }}.
+        Logged in as {{ roles || googleRole }}.
     </div>    
 </div>

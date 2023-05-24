@@ -9,7 +9,7 @@
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
-        <table mat-table [dataSource]="listUsers|filter:searchUser" class="mat-elevation-z8">
+        <table mat-table [dataSource]="listUsers" class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
@@ -83,7 +83,7 @@
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
-        <table mat-table [dataSource]="listMissions|filter:searchMission" class="mat-elevation-z8">
+        <table mat-table [dataSource]="listMissions" class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
@@ -150,7 +150,6 @@
             </button>
           </div>
     </div>
-    <br>
     <div class="row">
         <h2 style="color: coral;">Applications data</h2>
         <div>
@@ -160,7 +159,7 @@
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
-        <table mat-table [dataSource]="listApplications|filter:searchApplication" class="mat-elevation-z8">
+        <table mat-table [dataSource]="listApplications" class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
@@ -197,5 +196,39 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumnsApplications"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumnsApplications;"></tr>
           </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h1 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold; font-style: italic; color: coral;">App statistics and graphs</h1>
+    <div class="row">
+      <div class="col-6">
+        <div class="chartUserAgeContainer">
+          <h2 style="color: coral;" class="text-center">Users pear each age range</h2>
+          <canvas #userAgeChartCanvas></canvas>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="chartUserContainer">
+          <h2 style="color: coral;" class="text-center">Users pear each role</h2>
+            <canvas #userPieChartCanvas></canvas>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-6">
+        <div class="chartMissionContainer">
+          <h2 style="color: coral;" class="text-center">Duration spent By mission(per month)</h2>
+          <canvas #missionsChartCanvas></canvas>
+        </div>
+      </div>
+        <div class="col-6">
+          <div class="chartMissionCategoryContainer">
+            <h2 style="color: coral;" class="text-center">Missions per each category</h2>
+            <canvas #missionsCategoryPieChartCanvas></canvas>
+          </div>
+        </div>
     </div>
 </div>

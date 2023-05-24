@@ -21,8 +21,8 @@ export class MessageService {
     this.socket.emit('join', data);
   }
 
-  sendMessage(data:any): void {
-    this.socket.emit('message', data);
+  sendMessage(text:any):any{
+    this.socket.emit('message/', text);
   }
 
   getMessage(): Observable<any> {

@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit{
   }
 
   sendMessage(text: string, userId: any) {
-    this.messageService.sendMessage(text, userId).subscribe(
+    this.messageService.sendMessage(text).subscribe(
       (response: any) => {
         console.log('Message sent:', response);
       },

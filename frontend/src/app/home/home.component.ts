@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -6,12 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-focus: any;
-focus1: any;
 
-  constructor() { }
+currentUser:any
+
+  constructor(private tokenService:TokenStorageService) { }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    window.open(`http://localhost:8080/auth/logout`, "_self");
   }
 
 }

@@ -2,7 +2,7 @@ import { User } from './../_models/User';
 import { UserService } from './../_services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-profile',
@@ -26,14 +26,14 @@ export class UpdateProfileComponent implements OnInit {
   imageUrl: string;
   selectedFile:File | null = null
   id:any
-  username = new FormControl('',[Validators.required,Validators.minLength(6)])
-  email = new FormControl('', [Validators.required, Validators.email])
-  password = new FormControl('',Validators.required)
-  firstname = new FormControl('',[Validators.required])
-  lastname = new FormControl('',[Validators.required])
-  birthdate = new FormControl('',[Validators.required])
-  phonenumber = new FormControl('',[Validators.required,Validators.pattern('/^\d+$/'),Validators.minLength(8)])
-  address = new FormControl('',[Validators.required])
+  username = new UntypedFormControl('',[Validators.required,Validators.minLength(6)])
+  email = new UntypedFormControl('', [Validators.required, Validators.email])
+  password = new UntypedFormControl('',Validators.required)
+  firstname = new UntypedFormControl('',[Validators.required])
+  lastname = new UntypedFormControl('',[Validators.required])
+  birthdate = new UntypedFormControl('',[Validators.required])
+  phonenumber = new UntypedFormControl('',[Validators.required,Validators.pattern('/^\d+$/'),Validators.minLength(8)])
+  address = new UntypedFormControl('',[Validators.required])
 
   constructor(private route: ActivatedRoute,private router: Router,
     private userService:UserService) { }

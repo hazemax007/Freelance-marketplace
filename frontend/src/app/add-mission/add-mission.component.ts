@@ -3,7 +3,7 @@ import { Mission } from '../_models/Mission';
 import { MissionService } from '../_services/mission.service';
 import { error } from 'console';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-mission',
@@ -13,11 +13,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddMissionComponent implements OnInit {
 
   mission:Mission
-  missionForm:FormGroup
+  missionForm:UntypedFormGroup
 
   constructor(private missionService:MissionService,
     private router:Router,
-    private missionBuilder:FormBuilder) {
+    private missionBuilder:UntypedFormBuilder) {
       this.missionForm = this.missionBuilder.group({
         title:['',Validators.required],
         field:['',Validators.required],

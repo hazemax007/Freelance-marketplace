@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ArchiveService } from '../_services/archive.service';
 import { CoreService } from '../_services/core.service';
@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
 })
 export class ArchiveFormComponent implements OnInit {
 
-  archiveForm:FormGroup
+  archiveForm:UntypedFormGroup
 
-  constructor(private builder:FormBuilder,
+  constructor(private builder:UntypedFormBuilder,
     public dialogRef: MatDialogRef<ArchiveFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { missionId: any },
     private archiveService:ArchiveService,

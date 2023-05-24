@@ -15,6 +15,7 @@ import { ApplicationDetailsComponent } from './application-details/application-d
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
 import { ChatComponent } from './chat/chat.component';
+import { GoogleLoginComponent } from './google-login/google-login.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path:'adminPanel', component:AdminPanelComponent},
   { path:'listIntercontrats', component:ListIntercontratsComponent},
   { path:'chat',  component:ChatComponent},
+  { path:'googleLogin' , component:GoogleLoginComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

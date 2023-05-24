@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ApplicationService } from '../_services/application.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-email-form',
@@ -12,11 +12,11 @@ export class EmailFormComponent implements OnInit {
 
   email: string;
   content: string;
-  emailForm:FormGroup
+  emailForm:UntypedFormGroup
 
   constructor(private applicationService:ApplicationService,
     public dialogRef: MatDialogRef<EmailFormComponent>,
-    private builder:FormBuilder) {
+    private builder:UntypedFormBuilder) {
         this.emailForm = this.builder.group({
           email:['',[Validators.required,Validators.email]],
           content:['',Validators.required]

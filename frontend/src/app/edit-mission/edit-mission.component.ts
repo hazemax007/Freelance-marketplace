@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MissionService } from '../_services/mission.service';
 import { CoreService } from '../_services/core.service';
@@ -11,13 +11,13 @@ import { CoreService } from '../_services/core.service';
 })
 export class EditMissionComponent implements OnInit {
 
-  missionForm:FormGroup
+  missionForm:UntypedFormGroup
 
   constructor(public dialogRef: MatDialogRef<EditMissionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private missionService:MissionService,
     private coreService:CoreService,
-    private missionBuilder:FormBuilder) {
+    private missionBuilder:UntypedFormBuilder) {
       this.missionForm = this.missionBuilder.group({
         title:['',Validators.required],
         field:['',Validators.required],

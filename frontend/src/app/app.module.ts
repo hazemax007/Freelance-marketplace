@@ -29,6 +29,7 @@ import { MissionComponent } from './mission/mission.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { MissionDetailsComponent } from './mission-details/mission-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {  OAuthModule } from 'angular-oauth2-oidc';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { AddMissionComponent } from './add-mission/add-mission.component'
@@ -46,7 +47,12 @@ import { AssignMissionComponent } from './assign-mission/assign-mission.componen
 import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
 import { RatingFormComponent } from './rating-form/rating-form.component';
 import { ChatComponent } from './chat/chat.component';
-import { ChatUsernameComponent } from './chat-username/chat-username.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { GoogleLoginComponent } from './google-login/google-login.component';
 
 
 
@@ -77,7 +83,7 @@ import { ChatUsernameComponent } from './chat-username/chat-username.component';
     ListIntercontratsComponent,
     RatingFormComponent,
     ChatComponent,
-    ChatUsernameComponent,
+    GoogleLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -99,13 +105,34 @@ import { ChatUsernameComponent } from './chat-username/chat-username.component';
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    Ng2SearchPipeModule,
+    //Ng2SearchPipeModule,
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
+    SocialLoginModule
+    
+    //OAuthModule.forRoot()
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '657869156146-tib1g939ruq20jhlpm49ari5i87tllv7.apps.googleusercontent.com'
+            )
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

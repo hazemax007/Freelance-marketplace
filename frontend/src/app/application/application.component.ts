@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApplicationService } from '../_services/application.service';
@@ -19,7 +19,7 @@ export class ApplicationComponent implements OnInit {
   currentUser:any
   id:any
 
-  applicationForm:FormGroup
+  applicationForm:UntypedFormGroup
 
   application = {
     name:'',
@@ -29,7 +29,7 @@ export class ApplicationComponent implements OnInit {
     resume: null as null
   }
 
-  constructor(private applicationBuilder:FormBuilder,
+  constructor(private applicationBuilder:UntypedFormBuilder,
     public dialogRef: MatDialogRef<ApplicationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { missionId: any },
     private applicationService:ApplicationService,

@@ -6,6 +6,8 @@ const dbConfig = require("./app/config/db.config");
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const authRoute = require("./app/routes/googlaAuth.routes");
+
 
 
 
@@ -16,17 +18,21 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
+
+
+
 // parse requests of content-type - application/json
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+
 const db = require("./app/models");
 const Role = db.role;
-const Message = db.message
-const mongoURL = 'mongodb://localhost:27017'; // Replace with your MongoDB connection string
-const dbName = 'Welyne'; // Replace with your database name
+//const Message = db.message
+//const User = db.user
+
 
 
 
