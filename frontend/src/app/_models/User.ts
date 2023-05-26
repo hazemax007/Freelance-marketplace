@@ -9,6 +9,8 @@ export class User{
     birthdate?:Date
     phonenumber?:string
     address?:String
+    googleId?:String
+    displayName?:String
     intercontrat?:boolean
     image?:File
     roles?:Role[]

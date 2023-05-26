@@ -1,4 +1,4 @@
-<div class="profile" *ngIf="currentUser; else loggedOut">
+<div class="profile" *ngIf="currentUser || googleUser; else loggedOut">
   <div id="main-container">
     <h3 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold; font-style: italic; color: coral;">Profile details</h3>
@@ -6,7 +6,7 @@
       <div class="col-md-3">
         <mat-card>
           <div>
-            <img class="profilePicture" mat-card-image src="../../assets/img/avatar.png" >
+            <img class="profilePicture" mat-card-image [src]="googleUser.photoUrl" height="200px" width="100px">
           </div>
         </mat-card>
       </div>
@@ -17,22 +17,22 @@
               <mat-card-content>
                 <p>
                   <mat-label>Username:</mat-label>
-                  <mat-label> {{user?.username}} </mat-label>
+                  <mat-label> {{user?.username || googleUser?.name}} </mat-label>
                 </p>
                 <br>
                 <p>
                   <mat-label>Email:</mat-label>
-                  <mat-label> {{user?.email}} </mat-label>
+                  <mat-label> {{user?.email || googleUser?.email}} </mat-label>
                 </p>
                 <br>
                 <p>
                   <mat-label>Firstname:</mat-label>
-                  <mat-label> {{user?.firstname}} </mat-label>
+                  <mat-label> {{user?.firstname || googleUser?.firstName}} </mat-label>
                 </p>
                 <br>
                 <p>
                   <mat-label>Lastname:</mat-label>
-                  <mat-label> {{user?.lastname}} </mat-label>
+                  <mat-label> {{user?.lastname || googleUser?.lastName}} </mat-label>
                 </p>
               </mat-card-content>
             </div>
@@ -69,6 +69,7 @@
     
   </div>
   </div>
+
   
   <ng-template #loggedOut>
     Please login.

@@ -7,6 +7,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { MissionService } from '../_services/mission.service';
 import { Mission } from '../_models/Mission';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-application',
@@ -31,10 +32,12 @@ export class ApplicationComponent implements OnInit {
 
   constructor(private applicationBuilder:UntypedFormBuilder,
     public dialogRef: MatDialogRef<ApplicationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { missionId: any },
+    @Inject(MAT_DIALOG_DATA) public data: { missionId: any, userId:any },
     private applicationService:ApplicationService,
     private tokenService:TokenStorageService,
-    private coreService:CoreService) {
+    private coreService:CoreService,
+    private userService:UserService,
+    private route:ActivatedRoute) {
     this.applicationForm = this.applicationBuilder.group({
       name:['',Validators.required],
       description:['',Validators.required],

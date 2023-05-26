@@ -41,18 +41,16 @@ import { ListApplicationComponent } from './list-application/list-application.co
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
 import { EmailFormComponent } from './email-form/email-form.component';
 import { ArchiveFormComponent } from './archive-form/archive-form.component';
-import { ImageComponent } from './image/image.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component'
 import { AssignMissionComponent } from './assign-mission/assign-mission.component';
 import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
 import { RatingFormComponent } from './rating-form/rating-form.component';
-import { ChatComponent } from './chat/chat.component';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
 } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { GoogleLoginComponent } from './google-login/google-login.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -77,13 +75,11 @@ import { GoogleLoginComponent } from './google-login/google-login.component';
     ApplicationDetailsComponent,
     EmailFormComponent,
     ArchiveFormComponent,
-    ImageComponent,
-    AdminPanelComponent,
     AssignMissionComponent,
     ListIntercontratsComponent,
     RatingFormComponent,
-    ChatComponent,
-    GoogleLoginComponent
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +106,6 @@ import { GoogleLoginComponent } from './google-login/google-login.component';
     MatDialogModule,
     MatSnackBarModule,
     SocialLoginModule
-    
     //OAuthModule.forRoot()
     
   ],
@@ -125,7 +120,7 @@ import { GoogleLoginComponent } from './google-login/google-login.component';
             provider: new GoogleLoginProvider(
               '657869156146-tib1g939ruq20jhlpm49ari5i87tllv7.apps.googleusercontent.com'
             )
-          },
+          }
         ],
         onError: (err) => {
           console.error(err);

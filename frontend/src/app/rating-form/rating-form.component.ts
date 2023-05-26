@@ -39,7 +39,7 @@ export class RatingFormComponent implements OnInit {
 
   getIntercontratById(){
     this.userService.getIntercontratById(this.data.intercontratId).subscribe(
-      (data:User) => {
+      (data:any) => {
         this.intercontrat = data
         console.log(this.intercontrat)
       }

@@ -5,6 +5,8 @@ const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+var nodemailer = require("nodemailer")
+var randomstring = require("randomstring")
 
 exports.signup = async(req, res) => {
   const user = new User({
@@ -107,3 +109,68 @@ exports.signin = async(req, res) => {
       });
     });
 };
+
+exports.forgetPassword = async (req,res) => {
+  try{
+    const email = req.body.email
+    const userData = await User.findOne({email:email})
+    if(userData){
+      const randomString = randomstring.generate()
+      const data = await User.updateOne({email:email},{$set:{token:randomString}})
+      sendResetPasswordMail(userData.username,userData.email,randomString)
+      res.status(200).send({success:true,msg:"Please check your inbox of mail and reset your password."})
+    }else{
+      res.status(200).send({success:true,msg:"This email does not exists."})
+    }
+  }catch(error){
+    res.status(400).send({success:false,msg:error.message})
+  }
+}
+
+const sendResetPasswordMail = async (name,email,token) => {
+  try{
+    const transporter = nodemailer.createTransport({
+      host:'smtp.gmail.com',
+      port:587,
+      secure:false,
+      requireTLS:true,
+      auth:{
+        user:config.emailUser,
+        pass:config.emailPassword
+      }
+    })
+    const mailOptions = {
+      from:config.emailUser,
+      to:email,
+      subject:'For reset password',
+      html:'<p>Hii '+name+', Please copy the link and <a href="http://localhost:4200/reset-password?token='+token+'"> reset your password <a/>'
+    }
+    transporter.sendMail(mailOptions,function(error,info){
+      if(error){
+        console.log(error)
+      }else{
+        console.log("Mail has been sent:- ",info.response)
+      }
+    })
+  }catch(error){
+    res.status(400).send({success:false,msg:error.message})
+  }
+}
+
+exports.resetPassword = async (req,res) =>{
+  try{
+    const token = req.query.token
+    const tokenData = await User.findOne({  token:token })
+    if(tokenData){
+      const password = req.body.password
+      const newPassword = bcrypt.hashSync(password,8)
+      console.log("test")
+      const userData = await User.findByIdAndUpdate({_id:tokenData._id},{$set:{password:newPassword,token:''}},{new:true})
+      res.status(200).send({success:true,msg:"User password has been reset",data:userData})
+    }else{
+      res.status(200).send({success:false,msg:"This token has been expired"})
+    }
+  }catch(error){
+    res.status(400).send({success:false,msg:error.message})
+  }
+}

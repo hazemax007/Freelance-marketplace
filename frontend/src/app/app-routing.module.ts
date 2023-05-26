@@ -12,10 +12,9 @@ import { EditMissionComponent } from './edit-mission/edit-mission.component';
 import { ApplicationComponent } from './application/application.component';
 import { ListApplicationComponent } from './list-application/list-application.component';
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
-import { ChatComponent } from './chat/chat.component';
-import { GoogleLoginComponent } from './google-login/google-login.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,10 +29,9 @@ const routes: Routes = [
   { path:'application', component:ApplicationComponent },
   { path:'listApplications', component:ListApplicationComponent },
   { path:'application/:id' , component:ApplicationDetailsComponent},
-  { path:'adminPanel', component:AdminPanelComponent},
   { path:'listIntercontrats', component:ListIntercontratsComponent},
-  { path:'chat',  component:ChatComponent},
-  { path:'googleLogin' , component:GoogleLoginComponent},
+  { path:'forget-password', component:ForgetPasswordComponent},
+  { path:'reset-password', component:ResetPasswordComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

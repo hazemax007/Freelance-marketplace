@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
       if(this.googleRole === 'ROLE_USER'){
         this.showGoogleAuthBoard = true
       }
-      console.log(this.showGoogleAuthBoard)
+      
 
       this.username = this.currentUser.username;
     }
@@ -59,6 +59,10 @@ export class NavbarComponent implements OnInit {
 
   goToProfile(id:any){
     this.router.navigate(['profile',id])
+  }
+
+  goToMission(id:any){
+    this.router.navigate(['missions',id])
   }
 
   goToListapplications(id:any){

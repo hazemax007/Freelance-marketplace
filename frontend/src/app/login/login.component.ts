@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const ROLE_KEY = 'role-user'
+declare const IN: any;
 
 @Component({
   selector: 'app-login',
@@ -35,10 +36,7 @@ export class LoginComponent implements OnInit {
   constructor(private builder:UntypedFormBuilder,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private socialAuthService: SocialAuthService
-    ) {
-      
-     }
+    private socialAuthService: SocialAuthService) {}
 
   ngOnInit(): void {
     this.loginGroup = this.builder.group({
@@ -64,6 +62,20 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       });
     }
+  }
+
+  loginWithLinkedIn(): void {
+    IN.User.authorize(() => {
+      this.getUserData();
+    });
+  }
+
+  getUserData(): void {
+    IN.API.Profile('me').result((result: any) => {
+      const userData = result.values[0];
+      // Handle the user data
+      console.log(userData);
+    });
   }
 
 
@@ -96,6 +108,7 @@ export class LoginComponent implements OnInit {
     window.sessionStorage.removeItem(USER_KEY)
     window.sessionStorage.setItem(USER_KEY,JSON.stringify(user))
   }
+
 
   reloadPage(): void {
     window.location.reload();

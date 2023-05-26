@@ -28,7 +28,7 @@ exports.addApplication = async (req,res) => {
   const { file } = req.file
   const {name,startDate,description} = req.body
   try{
-    const user = await User.findById(userId);
+    const user = await User.findById(userId)
     const project = await Project.findById(projectId)
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

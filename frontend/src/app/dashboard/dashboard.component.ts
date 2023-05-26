@@ -368,5 +368,4 @@ createMissionPieChart(labels: string[], data: number[]): void {
   }
 
 
-
 }

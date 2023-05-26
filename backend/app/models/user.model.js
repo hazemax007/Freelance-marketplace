@@ -18,6 +18,10 @@ const User = mongoose.model(
       default: false
     },
     image: String,
+    token:{
+      type:String,
+      default:''
+    },
     applications: [
       {
         type: mongoose.Types.ObjectId,

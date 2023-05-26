@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Mission } from '../_models/Mission';
 import { MissionService } from '../_services/mission.service';
-import { Observable } from 'rxjs';
-import { error } from 'console';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApplicationComponent } from '../application/application.component';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-mission',
@@ -22,7 +19,8 @@ export class MissionComponent implements OnInit {
   displayedColumns: string[] = ['Title', 'Category', 'Tools', 'Duration'];
   
 
-  constructor(private missionService:MissionService) { }
+  constructor(private missionService:MissionService,private userService:UserService,
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.showListMissions()
@@ -39,6 +37,7 @@ export class MissionComponent implements OnInit {
       }
     )
   }
+
 
   refreshList(): void {
     this.showListMissions();

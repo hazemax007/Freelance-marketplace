@@ -1,14 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
-
+const bodyParser = require('body-parser')
 
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const authRoute = require("./app/routes/googlaAuth.routes");
-
-
 
 
 var corsOptions = {
@@ -19,21 +14,18 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 
-
-
 // parse requests of content-type - application/json
-app.use(express.json());
+app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const db = require("./app/models");
 const Role = db.role;
 //const Message = db.message
 //const User = db.user
-
-
 
 
 db.mongoose
@@ -136,7 +128,5 @@ app.listen(PORT, () => {
         io.in(data.room).emit('new message', {user: data.user, message: data.message});
     });
 });
-
-
 
 }

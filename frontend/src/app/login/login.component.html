@@ -61,11 +61,9 @@
                   </div>
             </form>
             <br><br>
-            <button class="signUpButton" mat-raised-button *ngIf="!isLoggedIn">
-              <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
-              Login with google</button>
-            <br><br>
-            <button class="signUpButton" mat-raised-button color="warn" *ngIf="!isLoggedIn">Login with linkedin</button>   
+            <div class="google-button">
+              <asl-google-signin-button type='standard' size='large' *ngIf="!isLoggedIn"></asl-google-signin-button>
+            </div>
         </div>
         <div class="col-sm-6" *ngIf="!isLoggedIn">
             <div class="image">
@@ -73,7 +71,13 @@
             </div>
             <br>
             <br>
-            <h2>Don't you have an account <a href="" routerLink="/register" style="color: coral;">Register now</a></h2>
+            <h2>Forget your password !
+              <a href="" routerLink="/forget-password" style="color: coral;">click here to renew it</a>
+            </h2>
+            <br>
+            <h2>Don't you have an account 
+              <a href="" routerLink="/register" style="color: coral;">Register now</a>
+            </h2>
         </div>
     </div>
 </div>
