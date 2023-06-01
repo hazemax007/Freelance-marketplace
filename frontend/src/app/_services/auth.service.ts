@@ -20,9 +20,9 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
+  register(username: string, email: string, password: string , roles:any[]): Observable<any> {
     return this.http.post(AUTH_API + "/signup", {
-      username,email,password
+      username,email,password,roles
     }, httpOptions)
   }
 
@@ -32,5 +32,9 @@ export class AuthService {
 
   resetPassword(token:string , password:any){
     return this.http.post(`${AUTH_API}/reset-password?token=${token}`,password)
+  }
+
+  verifyUser(confirmationCode:any){
+    return this.http.get(AUTH_API + '/confirm/' + confirmationCode)
   }
 }

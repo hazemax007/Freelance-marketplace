@@ -38,6 +38,7 @@ exports.allAccess = (req, res) => {
     const id = req.params.id;
 
     User.findById(id)
+    .populate('image')
     .populate('applications')
       .then(data => {
         if (!data)
@@ -48,15 +49,16 @@ exports.allAccess = (req, res) => {
         res
           .status(500)
           .send({ message: "Error retrieving User with id=" + id });
+          console.log(err)
       });
   }
 
   exports.updateUser = async (req, res) => {
     const { username, email, password, firstname, lastname, birthdate, phonenumber, address } = req.body;
     const { intercontrat } = false
-    //const { image } = req.file.path
     const hashedPassword = await bcrypt.hash(password, 8);
     try {
+      
       const updatedUser = await User.findByIdAndUpdate(req.params.id,{
         username:username,
         email:email,
@@ -66,10 +68,10 @@ exports.allAccess = (req, res) => {
         birthdate:birthdate,
         phonenumber:phonenumber,
         address:address,
-        intercontrat:intercontrat
-        //image:image
+        intercontrat:intercontrat,
       });
       res.status(200).json(updatedUser);
+
     } catch (error) {
       res.status(400).json({message: error.message});
   }
@@ -97,57 +99,6 @@ exports.allAccess = (req, res) => {
       });
   }
 
-  /*exports.uploadImage = async (req,res) =>{
-    try {
-      const image = new Image({
-        name: req.file.originalname,
-        data: req.file.buffer,
-        contentType: req.file.mimetype
-      });
-      const savedImage = await image.save();
-      const user = await User.findByIdAndUpdate(
-        req.body.userId,
-        { profileImage: savedImage._id },
-        { new: true }
-      );
-      res.json(user);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error uploading image');
-    }
-  }*/
-
-/*exports.retrieveImage = async (req,res) =>{
-  try {
-    const user = await User.findById(req.params.userId).populate('profileImage');
-    if (!user) {
-      return res.status(404).send('User not found');
-    }
-    if (!user.profileImage) {
-      return res.status(404).send('Profile image not found');
-    }
-    res.set('Content-Type', user.profileImage.contentType);
-    res.send(user.profileImage.data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error retrieving image');
-  }
-
-}*/
-
-/*exports.userChatsData = async (req,res) => {
-  User.find().toArray((err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Internal server error');
-    } else {
-      const chartData = data.map(item => {
-        return { label: item.label, value: item.value };
-      });
-      res.send(chartData);
-    }
-  });
-}*/
 
 exports.defineIntercontrat = async (req,res) =>{
   const id = req.params.id;

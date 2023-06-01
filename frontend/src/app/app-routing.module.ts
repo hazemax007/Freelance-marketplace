@@ -15,6 +15,10 @@ import { ApplicationDetailsComponent } from './application-details/application-d
 import { ListIntercontratsComponent } from './list-intercontrats/list-intercontrats.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RegisterConfirmationComponent } from './register-confirmation/register-confirmation.component';
+import { AllImagesComponent } from './all-images/all-images.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import { UpdateImageComponent } from './update-image/update-image.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,8 +34,12 @@ const routes: Routes = [
   { path:'listApplications', component:ListApplicationComponent },
   { path:'application/:id' , component:ApplicationDetailsComponent},
   { path:'listIntercontrats', component:ListIntercontratsComponent},
+  { path:'register-confirmation/:confirmationCode', component:RegisterConfirmationComponent},
   { path:'forget-password', component:ForgetPasswordComponent},
   { path:'reset-password', component:ResetPasswordComponent},
+  { path:'allImages', component:AllImagesComponent },
+  { path:'uploadImage/:id', component:UploadImageComponent},
+  { path:'updateImage/:imageId/:userId', component:UpdateImageComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

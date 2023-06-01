@@ -1,0 +1,20 @@
+<div class="uploadImage">
+    <h1>Upload image</h1>
+<hr />
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div>
+    <input formControlName="name" type="text" placeholder="Enter name..." />
+  </div>
+  <div>
+    <input (change)="onFileSelect($event)" type="file" />
+  </div>
+  <div *ngIf="imageData">
+    <img [src]="imageData" [alt]="form.value.name" />
+  </div>
+  <div>
+    <button mat-raised-button color="warn">
+        <mat-icon>upload</mat-icon>
+    </button>
+  </div>
+</form>
+</div>

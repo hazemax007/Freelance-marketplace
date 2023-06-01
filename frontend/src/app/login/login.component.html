@@ -7,7 +7,8 @@
             (ngSubmit)="f.form.valid && onSubmit()"
             #f="ngForm"
             novalidate>
-                <h2 style="color: coral;">Login now</h2>
+                <h2 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: bold; font-style: italic; color: coral;">Login now</h2>
                 <p>
                     <mat-form-field appearance="outline" class="example-width">
                         <mat-label>Enter your username</mat-label>
@@ -60,9 +61,15 @@
                     </div>
                   </div>
             </form>
-            <br><br>
+            <br>
             <div class="google-button">
               <asl-google-signin-button type='standard' size='large' *ngIf="!isLoggedIn"></asl-google-signin-button>
+            </div>
+            <br>
+            <div class="forget-password-link" *ngIf="!isLoggedIn">
+              <label style="font-weight: bold;">Forget your password !
+                <a href="" routerLink="/forget-password" style="color: coral;">click here to renew it</a>
+              </label>
             </div>
         </div>
         <div class="col-sm-6" *ngIf="!isLoggedIn">
@@ -71,9 +78,6 @@
             </div>
             <br>
             <br>
-            <h2>Forget your password !
-              <a href="" routerLink="/forget-password" style="color: coral;">click here to renew it</a>
-            </h2>
             <br>
             <h2>Don't you have an account 
               <a href="" routerLink="/register" style="color: coral;">Register now</a>

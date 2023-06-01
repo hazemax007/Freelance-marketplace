@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const path = require('path');
+
+const imagesRoutes = require('./app/routes/image.routes');
 
 const app = express();
 
@@ -19,6 +23,8 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser())
 
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -53,7 +59,6 @@ require("./app/routes/user.routes")(app);
 require("./app/routes/project.routes")(app);
 require("./app/routes/application.routes")(app);
 require("./app/routes/archive.routes")(app);
-require("./app/routes/image.routes")(app);
 require("./app/routes/rating.routes")(app);
 require("./app/routes/message.routes")(app);
 
@@ -128,5 +133,10 @@ app.listen(PORT, () => {
         io.in(data.room).emit('new message', {user: data.user, message: data.message});
     });
 });
+
+
+  app.use('/images', express.static(path.join('images')));
+
+  app.use('/api/test/images', imagesRoutes);
 
 }

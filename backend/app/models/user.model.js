@@ -17,11 +17,18 @@ const User = mongoose.model(
       type: Boolean,
       default: false
     },
-    image: String,
     token:{
       type:String,
       default:''
     },
+    status: {
+      type: String, 
+      enum: ['Pending', 'Active'],
+      default: 'Pending'
+    },
+    confirmationCode: { 
+      type: String, 
+      unique: true },
     applications: [
       {
         type: mongoose.Types.ObjectId,
@@ -39,7 +46,11 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role"
       }
-    ]
+    ],
+    image:{
+      type:mongoose.Types.ObjectId,
+      ref:"image" 
+    },
   })
 );
 

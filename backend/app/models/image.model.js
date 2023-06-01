@@ -4,9 +4,12 @@ const mongoose = require("mongoose");
       "image",
       new mongoose.Schema(
         {
-          filname: String,
-          contentType: String,
-          data: Buffer
+          name: { type: String, required: true },
+          imagePath: { type: String, required: true },
+          user:{
+            type:mongoose.Types.ObjectId,
+            ref:"User" 
+          },
           
         },
         { timestamps: true }

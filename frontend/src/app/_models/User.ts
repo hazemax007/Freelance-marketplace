@@ -1,3 +1,4 @@
+import { Image } from './Image';
 import { Role } from './Role';
 export class User{
     _id?:any
@@ -8,10 +9,12 @@ export class User{
     lastname?:string
     birthdate?:Date
     phonenumber?:string
-    address?:String
+    address?:string
+    token?:any
+    confirmationCode?:any
     googleId?:String
     displayName?:String
     intercontrat?:boolean
-    image?:File
+    image?:Image
     roles?:Role[]
 }

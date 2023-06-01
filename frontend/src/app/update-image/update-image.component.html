@@ -1,0 +1,25 @@
+<div class="uploadImage">
+    <h1 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold; font-style: italic; color: coral;">Update image</h1>
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" placeholder="Enter image name..." />
+    </mat-form-field>
+  </div>
+  <div>
+    <input (change)="onFileSelect($event)" type="file" />
+  </div>
+  <div *ngIf="imageData">
+    <img [src]="imageData" [alt]="form.value.name" />
+  </div>
+  <div>
+    <br>
+    <button mat-raised-button color="warn">
+        Update 
+    </button>
+  </div>
+</form>
+</div>
+

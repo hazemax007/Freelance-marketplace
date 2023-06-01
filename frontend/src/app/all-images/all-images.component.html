@@ -1,0 +1,12 @@
+<h1>All Images</h1>
+<hr />
+<div *ngIf="images.length > 0">
+  <div class="row">
+    <div *ngFor="let image of images" class="image">
+        <img [src]="image.imagePath" [alt]="image.name" width="200px" height="200px"/>
+        <div>
+          <span>{{ image.name }}</span>
+        </div>
+  </div>
+  </div>
+</div>

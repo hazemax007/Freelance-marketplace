@@ -1,4 +1,5 @@
 const config = require("../config/auth.config");
+const configMail = require("../config/nodemailer.config")
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
@@ -9,10 +10,16 @@ var nodemailer = require("nodemailer")
 var randomstring = require("randomstring")
 
 exports.signup = async(req, res) => {
+  const token = jwt.sign({ email: req.body.email }, config.secret);
+  const {roles} = req.body.roles
+  const roleDocuments = await Role.find({ name: { $in: roles } });
+  const roleIds = roleDocuments.map((role) => role._id);
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 8),
+    confirmationCode: token,
+    roles : roleIds
   });
 
   user.save((err, user) => {
@@ -39,8 +46,13 @@ exports.signup = async(req, res) => {
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res.send({ message: "User was registered successfully! Please check your email" });
           });
+          sendConfirmationEmail(
+            user.username,
+            user.email,
+            user.confirmationCode
+          );
         }
       );
     } else {
@@ -57,8 +69,13 @@ exports.signup = async(req, res) => {
             return;
           }
 
-          res.send({ message: "User was registered successfully!" });
+          res.send({ message: "User was registered successfully! Please check your email" });
         });
+        sendConfirmationEmail(
+          user.username,
+          user.email,
+          user.confirmationCode
+        );
       });
     }
   });
@@ -91,6 +108,12 @@ exports.signin = async(req, res) => {
         });
       }
 
+      if (user.status != "Active") {
+        return res.status(401).send({
+          message: "Pending Account. Please Verify Your Email!",
+        });
+      }
+
       var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
@@ -105,10 +128,51 @@ exports.signin = async(req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token
+        accessToken: token,
+        status: user.status,
       });
     });
 };
+
+exports.verifyUser = (req, res, next) => {
+  User.findOne({
+    confirmationCode: req.params.confirmationCode,
+  })
+    .then((user) => {
+      console.log(user);
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+      user.status = "Active";
+      user.save((err) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+      });
+    })
+    .catch((e) => console.log("error", e));
+};
+
+const sendConfirmationEmail = (name, email, confirmationCode) => {
+  const transporter = nodemailer.createTransport({
+    service:'gmail',
+      auth: {
+        user: 'hazem.bensalem@esprit.tn',
+        pass: '181JMT2837'
+      }
+  })
+  transporter.sendMail({
+    from: config.emailUser,
+    to: email,
+    subject: "Please confirm your account",
+    html: `<h1>Email Confirmation</h1>
+        <h2>Hello ${name}</h2>
+        <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
+        <a href=http://localhost:4200/register-confirmation/${confirmationCode}> Click here</a>
+        </div>`,
+  }).catch(err => console.log(err));
+}
 
 exports.forgetPassword = async (req,res) => {
   try{

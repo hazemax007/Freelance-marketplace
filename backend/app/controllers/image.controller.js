@@ -1,19 +1,58 @@
 const db = require("../models");
 const Image = db.image
+const User = db.user
 
-exports.uploadImage = async (req,res) => {
-    const { originalname, mimetype, buffer } = req.file;
+exports.getImages = async (req, res) => {
+    const images = await Image.find();
+    res.status(200).json({ images });
+  };
+  
+  exports.postImage = async (req, res) => {
+    const { userId } = req.params
+    const { name } = req.body;
+    const imagePath = 'http://localhost:8080/images/' + req.file.filename; // Note: set path dynamically
+
+    const user = await User.findById(userId)
+    if(!user){
+        return res.status(404).json({ message: 'User not found' });
+    }
     const image = new Image({
-        filename: originalname,
-        contentType: mimetype,
-        data: buffer
+      name,
+      imagePath,
+      user : user._id
     });
-    await image.save();
-    res.json(image);
-}
+    const createdImage = await image.save();
+    user.image = createdImage._id
+    await user.save()
+    res.status(201).json({
+      image: {
+        ...createdImage._doc,
+      },
+    });
+  };
 
-exports.getImage = async(req,res) => {
-    const image = await Image.findById(req.params.id);
-    res.set('Content-Type', image.contentType);
-    res.send(image.data);
-}
+  exports.updateImage = async(req,res) => {
+    const {imageId} = req.params
+    const {userId} = req.params
+    const { name } = req.body;
+    const imagePath = 'http://localhost:8080/images/' + req.file.filename; // Note: set path dynamically
+    
+    const user = await User.findById(userId)
+    if(!user){
+        return res.status(404).json({ message: 'User not found' });
+    }
+    try {
+      
+      const updatedImage = await Image.findByIdAndUpdate(imageId,{
+        name,
+        imagePath,
+        user : user._id
+      });
+      user.image = updatedImage._id
+      await user.save()
+      res.status(200).json(updatedImage);
+
+    } catch (error) {
+      res.status(400).json({message: error.message});
+  }
+  }

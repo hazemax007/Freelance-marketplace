@@ -6,7 +6,18 @@
       <div class="col-md-3">
         <mat-card>
           <div>
-            <img class="profilePicture" mat-card-image [src]="googleUser.photoUrl" height="200px" width="100px">
+            <img class="profilePicture" mat-card-image [src]="user?.image?.imagePath" height="180px" width="120px">
+          </div>
+          <div class="text-center" *ngIf="uploaded">
+            <button mat-raised-button color="warn" (click)="uploadImage(currentUser.id)">
+              Upload picture
+            </button>
+          </div>
+          <div class="text-center">
+            <button mat-raised-button color="warn" (click)="updateImage(user?.image._id,user?._id)">
+              <mat-icon>edit</mat-icon>
+              Update picture
+            </button>
           </div>
         </mat-card>
       </div>

@@ -1,13 +1,15 @@
-module.exports = app => {
-    const imageController = require('../controllers/image.controller')
-    var router = require("express").Router();
-    const multer = require('multer');
+const express = require('express');
 
-    const storage = multer.memoryStorage();
-    const upload = multer({ dest: 'uploads/' });
-    
-    router.post("/", upload.single('image'),imageController.uploadImage)
-    router.get("/:id", imageController.getImage)
+const imagesController = require('../controllers/image.controller');
 
-    app.use('/api/test/image', router);
-}
+const storage = require('../middlewares/storage');
+
+const router = express.Router();
+
+router.get('/', imagesController.getImages);
+
+router.post('/:userId', storage, imagesController.postImage);
+
+router.put('/:imageId/:userId' , storage , imagesController.updateImage)
+
+module.exports = router;

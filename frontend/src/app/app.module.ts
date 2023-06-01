@@ -51,6 +51,12 @@ import {
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RegisterConfirmationComponent } from './register-confirmation/register-confirmation.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AllImagesComponent } from './all-images/all-images.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import { UpdateImageComponent } from './update-image/update-image.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -79,7 +85,11 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ListIntercontratsComponent,
     RatingFormComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    RegisterConfirmationComponent,
+    AllImagesComponent,
+    UploadImageComponent,
+    UpdateImageComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +115,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule
     //OAuthModule.forRoot()
     
   ],
