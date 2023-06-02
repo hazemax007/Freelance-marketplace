@@ -1,2 +1,2 @@
-# NodeJS-JWT-Authentication-Microservice
-Dockerized Node JS app (MERN) for JWT authentication
+# Freelance resume matching
+Dockerized web application (MEAN) for matching freelancers with missions that suits their profile
