@@ -45,6 +45,7 @@ exports.findAll = (req, res) => {
     var condition1 = 
 
   Project.find(condition)
+  .populate('ratings')
     .then(data => {
       res.send(data);
     })
@@ -60,7 +61,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-  Project.findById(id)
+  Project.findById(id).populate('ratings')
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found Project with id " + id });

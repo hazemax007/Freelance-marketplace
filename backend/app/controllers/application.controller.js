@@ -119,11 +119,3 @@ exports.sendDecision = async(req,res) => {
   });
 }
 
-
-
-/*exports.getResume = async(req,res) => {
-  const filepath = `./uploads/${req.params.filename}`;
-  const filestream = fs.createReadStream(filepath);
-  res.setHeader('Content-Type', 'application/pdf');
-  filestream.pipe(res);
-}*/

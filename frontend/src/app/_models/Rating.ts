@@ -1,8 +1,9 @@
+import { Mission } from "./Mission"
 import { User } from "./User"
 
 export class Rating {
     _id?:any
-    rate?:number
+    value?:number
     user?:User
-    ratedUser?:User
+    mission?:Mission
 }

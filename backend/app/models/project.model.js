@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
           requirments: String,
           duration:Number,
           user:{
-            type:mongoose.Types.ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             ref:"User" 
           },
           applications: [
@@ -19,7 +19,13 @@ const mongoose = require("mongoose");
               type: mongoose.Schema.Types.ObjectId,
               ref: "application"
             }
-          ]
+          ],
+          ratings:[
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'rating'
+          }
+        ]
         },
         { timestamps: true }
       )

@@ -3,6 +3,14 @@
             <h3 class="text-center" 
             style="font-size: x-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold; font-style: italic; color: coral;">  {{currentMission?.title}}  </h3>
+            <div class="text-center">
+                <div class="star-rating">
+                    <ng-container *ngFor="let star of getStarsArray(currentMission.ratings|averageRating)">
+                      <span class="star" [class.filled]="star"></span>
+                    </ng-container>
+                  </div>
+            </div>
+            <br>
             <h3> Field : {{currentMission?.field}} </h3>
             <h3>Technologies and tools : {{currentMission?.technology}} </h3>
             <h3>Duration : {{currentMission?.duration}} months </h3>
@@ -16,6 +24,10 @@
                     <mat-icon>forward</mat-icon>
                     Apply
                 </button>
+            </div>
+            <br>
+            <div class="text-center">
+                <button mat-raised-button color="warn" (click)="openRatingForm(currentMission._id)">Rate</button>
             </div>
     </mat-card>
 </div>

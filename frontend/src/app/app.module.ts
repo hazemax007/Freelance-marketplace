@@ -57,6 +57,7 @@ import { AllImagesComponent } from './all-images/all-images.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { UpdateImageComponent } from './update-image/update-image.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AverageRatingPipe } from './_pipes/average-rating.pipe';
 
 
 
@@ -89,7 +90,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RegisterConfirmationComponent,
     AllImagesComponent,
     UploadImageComponent,
-    UpdateImageComponent
+    UpdateImageComponent,
+    AverageRatingPipe
   ],
   imports: [
     BrowserModule,

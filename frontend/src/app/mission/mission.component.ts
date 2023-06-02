@@ -3,6 +3,7 @@ import { Mission } from '../_models/Mission';
 import { MissionService } from '../_services/mission.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
+import { Rating } from '../_models/Rating';
 
 @Component({
   selector: 'app-mission',
@@ -31,6 +32,8 @@ export class MissionComponent implements OnInit {
       data => {
         this.listMissions = data
         console.log(this.listMissions)
+        
+        
       },
       error => {
         console.log(error)

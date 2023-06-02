@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import { ArchiveFormComponent } from '../archive-form/archive-form.component';
 import { AssignMissionComponent } from '../assign-mission/assign-mission.component';
 import { Chart, ChartType, registerables} from 'chart.js';
+import { RatingService } from '../_services/rating.service';
+import { Rating } from '../_models/Rating';
 
 Chart.register(...registerables);
 
@@ -25,7 +27,7 @@ Chart.register(...registerables);
 export class DashboardComponent implements OnInit,AfterViewInit {
 
   displayedUserColumns: string[] = ['username', 'email', 'firstname', 'lastname', 'birthdate', 'phonenumber','actions'];
-  displayedMissionColumns: string[] = ['title', 'field', 'technology', 'duration', 'actions'];
+  displayedMissionColumns: string[] = ['title', 'field', 'technology', 'duration' , 'actions'];
   displayedColumnsApplications: string[] = ['name','startDate','actions']
   listMissions :Mission[]
   listUsers:User[]
@@ -50,7 +52,8 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     private dialog: MatDialog,
     private coreService:CoreService,
     private applicationService:ApplicationService,
-    private router:Router) { }
+    private router:Router,
+    private ratingService:RatingService) { }
 
   ngOnInit(): void {
     this.getListUsers()

@@ -4,14 +4,14 @@ const mongoose = require("mongoose");
       "rating",
       new mongoose.Schema(
         {
-          rate: Number,
-          userId:{
-            type:mongoose.Types.ObjectId,
+          value: { type: Number, min: 1, max: 5, required: true },
+          user:{
+            type:mongoose.Schema.Types.ObjectId,
             ref: "User"
           },
-          ratedUserId:{
+          project:{
             type:mongoose.Types.ObjectId,
-            ref: "User"
+            ref: "project"
           }
         },
         { timestamps: true }

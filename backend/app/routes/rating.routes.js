@@ -3,9 +3,13 @@ module.exports = app => {
     const ratings = require('../controllers/rating.controller')
     var router = require('express').Router()
 
-    router.post('/:userId/:ratedUserId',ratings.addRating)
+    router.post('/:projectId/:userId',ratings.addRating)
 
-    router.get('/:ratedUserId',ratings.getRating)
+    router.get('/', ratings.getAllRatings)
+
+    router.get('/:projectId',ratings.getRating)
+
+    router.get('/average/:projectId', ratings.averageRating)
 
     app.use('/api/test/ratings', router);
 }

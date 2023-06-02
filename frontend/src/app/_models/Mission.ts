@@ -1,3 +1,5 @@
+import { Rating } from "./Rating"
+
 export class Mission{
     _id?:any
     title?:string
@@ -6,5 +8,5 @@ export class Mission{
     technology?:string
     requirments?:string
     duration?:number
-    
+    ratings?:Rating[]
 }
