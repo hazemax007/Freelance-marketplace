@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Application } from '../_models/Application';
+import { Resume } from '../_models/Resume';
 
 const API_URL = 'http://localhost:8080/api/test/applications/';
 
@@ -34,5 +35,13 @@ export class ApplicationService {
 
   getResume(filepath:any){
     return this.http.get(API_URL+'getResume/'+filepath,{ responseType: 'blob' })
+  }
+
+  resumeParser(formData:FormData){
+    return this.http.post('http://localhost:8080/api/test/resume',formData)
+  }
+
+  getAllResumes():Observable<Resume[]>{
+    return this.http.get<Resume[]>('http://localhost:8080/api/test/resume')
   }
 }

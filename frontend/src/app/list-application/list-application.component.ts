@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../_models/User';
 import { error } from 'console';
 import { CoreService } from '../_services/core.service';
+import { Resume } from '../_models/Resume';
 
 @Component({
   selector: 'app-list-application',
@@ -26,7 +27,7 @@ export class ListApplicationComponent implements OnInit {
   columnsToDisplay = ['name', 'startDate', 'mission'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Application | null;
-  listApplications:any[] = []
+  listResumes:any[] = []
   currentUser:any
   id:any
 
@@ -36,21 +37,35 @@ export class ListApplicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.tokenService.getUser()
-    this.showListApplications()
+    this.showListResumes()
   }
 
-  showListApplications(){
-    this.applicationService.getAllApplications().subscribe(
-      (data:Application[]) => {
+
+  showListResumes(){
+    this.applicationService.getAllResumes().subscribe(
+      (data:Resume[]) =>{
         for(let i=0;i<data.length;i++){
           if(data[i].user?._id === this.currentUser.id){
-            this.listApplications.push(data[i])
-            console.log(this.listApplications)
+            this.listResumes.push(data[i])
+            console.log(this.listResumes)
           }
         }
       }
     )
   }
+
+  // showListApplications(){
+  //   this.applicationService.getAllApplications().subscribe(
+  //     (data:Application[]) => {
+  //       for(let i=0;i<data.length;i++){
+  //         if(data[i].user?._id === this.currentUser.id){
+  //           this.listApplications.push(data[i])
+  //           console.log(this.listApplications)
+  //         }
+  //       }
+  //     }
+  //   )
+  // }
 
   deleteApplication(id:any) {
     this.applicationService.deleteApplication(id).subscribe({

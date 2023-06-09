@@ -20,6 +20,12 @@ const mongoose = require("mongoose");
               ref: "application"
             }
           ],
+          resumes:[
+            {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "resume"
+            }
+          ],
           ratings:[
             {
             type: mongoose.Schema.Types.ObjectId,

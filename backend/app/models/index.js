@@ -13,6 +13,7 @@ db.archive = require('./archive.model')
 db.image = require('./image.model')
 db.rating = require('./rating.model')
 db.message = require('./message.model')
+db.resume = require('./resume.model')
 
 db.ROLES = ["user","admin","esn","freelancer","company"];
 

@@ -53,23 +53,39 @@ export class ApplicationComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
+  // onSubmit() {
+  //   const formData = new FormData();
+  //   formData.append('name', this.applicationForm.get('name').value);
+  //   formData.append('description', this.applicationForm.get('description').value);
+  //   formData.append('startDate', this.applicationForm.get('startDate').value);
+  //   formData.append('resume', this.selectedFile , this.selectedFile.name);
+  //   if (this.applicationForm.valid) {
+  //       this.applicationService.addApplication(this.currentUser.id,this.data.missionId,formData).subscribe({
+  //         next: (val: any) => {
+  //           this.coreService.openSnackBar('Application sended successfully');
+  //           this.dialogRef.close(true);
+  //         },
+  //         error: (err: any) => {
+  //           console.error(err);
+  //         },
+  //       });
+  //     }
+  //   }
+
   onSubmit() {
     const formData = new FormData();
-    formData.append('name', this.applicationForm.get('name').value);
-    formData.append('description', this.applicationForm.get('description').value);
-    formData.append('startDate', this.applicationForm.get('startDate').value);
     formData.append('resume', this.selectedFile , this.selectedFile.name);
-    if (this.applicationForm.valid) {
-        this.applicationService.addApplication(this.currentUser.id,this.data.missionId,formData).subscribe({
+    
+        this.applicationService.resumeParser(formData).subscribe({
           next: (val: any) => {
-            this.coreService.openSnackBar('Application sended successfully');
+            this.coreService.openSnackBar('Resume sended successfully');
             this.dialogRef.close(true);
           },
           error: (err: any) => {
             console.error(err);
           },
         });
-      }
+      
     }
   
 

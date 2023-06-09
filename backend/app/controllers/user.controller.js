@@ -39,7 +39,7 @@ exports.allAccess = (req, res) => {
 
     User.findById(id)
     .populate('image')
-    .populate('applications')
+    .populate('resumes')
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found User with id " + id });
