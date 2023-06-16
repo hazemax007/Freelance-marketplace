@@ -58,6 +58,11 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 import { UpdateImageComponent } from './update-image/update-image.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AverageRatingPipe } from './_pipes/average-rating.pipe';
+import { ResumeListComponent } from './resume-list/resume-list.component';
+import { ResumeDetailsComponent } from './resume-details/resume-details.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatDetailsComponent } from './chat-details/chat-details.component';
+import { Socket, io } from 'socket.io-client';
 
 
 
@@ -91,7 +96,11 @@ import { AverageRatingPipe } from './_pipes/average-rating.pipe';
     AllImagesComponent,
     UploadImageComponent,
     UpdateImageComponent,
-    AverageRatingPipe
+    AverageRatingPipe,
+    ResumeListComponent,
+    ResumeDetailsComponent,
+    ChatComponent,
+    ChatDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +133,7 @@ import { AverageRatingPipe } from './_pipes/average-rating.pipe';
     
   ],
   providers: [
+    { provide: Socket, useFactory: () => io('http://localhost:8081') },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

@@ -33,8 +33,8 @@ export class ApplicationService {
     return this.http.post(API_URL+'sendEmail',data)
   }
 
-  getResume(filepath:any){
-    return this.http.get(API_URL+'getResume/'+filepath,{ responseType: 'blob' })
+  getResume(id:any){
+    return this.http.get('http://localhost:8080/api/test/resume/'+id)
   }
 
   resumeParser(formData:FormData){

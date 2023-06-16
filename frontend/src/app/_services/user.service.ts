@@ -45,4 +45,8 @@ export class UserService {
     return this.http.delete(API_URL + 'deleteIntercontrat/' + id)
   }
 
+  fetchUsers(id:any):Observable<User[]>{
+    return this.http.get<User[]>(API_URL+'fetchUsers/'+id)
+  }
+
 }

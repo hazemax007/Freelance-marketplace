@@ -1,0 +1,33 @@
+<div class="missionDetails">
+    <mat-card>
+            <h3 class="text-center" 
+            style="font-size: large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold; font-style: italic; color: coral;">  {{currentUser?.username}}  </h3>
+            <div class="message-list-container">
+                <div class="chatroom-messages"
+                 *ngFor="let message of listMessages"
+                [ngClass]="{ 'message sent': isSentMessage(message), 'message received': isReceivedMessage(message) }">
+                    <div>
+                      <span class="message-sender"> {{message.sender.username}} </span> {{message.content}}
+                    </div>
+
+                    <!-- More messages... -->
+                  </div>
+            </div>
+            <div class="message-form-container">
+                <form [formGroup]="formGroup" (ngSubmit)="postMessage($event)" novalidate>
+                    
+                        <input 
+                        type="text" id="message-input"
+                        (keydown.enter)="postMessage($event)"
+                        formControlName="content">
+                    
+                    <button 
+                    id="send-button">
+                    <mat-icon>send</mat-icon>
+                </button>
+                </form>
+            </div>
+    </mat-card>
+</div>
+

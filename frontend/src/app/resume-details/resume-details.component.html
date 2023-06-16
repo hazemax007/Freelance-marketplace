@@ -1,0 +1,47 @@
+<div class="resumeDetails">
+    <h2 style="font-size: xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold; font-style: italic; color: coral;">Resume details</h2>
+        <mat-card>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-card-content>
+                <p>
+                  <mat-label>Candidat Name:</mat-label>
+                  <mat-label> {{resume?.name}} </mat-label>
+                </p>
+                <br>
+                <p>
+                  <mat-label>Candidat category:</mat-label>
+                  <mat-label> {{resume?.category}} </mat-label>
+                </p>
+                <br>
+                <p>
+                  <mat-label>Candidat email(s):</mat-label>
+                  <mat-label> {{resume?.email[0]}} </mat-label>
+                </p>
+                <br>
+                <p>
+                  <mat-label>Candidat phone number:</mat-label>
+                  <mat-label> {{resume?.mobile_no}} </mat-label>
+                </p>
+                <br>
+                <p>
+                    <mat-label>Mission looking for :</mat-label>
+                    <mat-label> {{resume?.project?.title}} </mat-label>
+                  </p>
+              </mat-card-content>
+            </div>
+            <div class="col-sm-8">
+              <div>
+                <mat-label>Candidat skills:</mat-label>
+                <div class="container">
+                    <ul class="list">
+                      <li class="list-item" *ngFor="let skill of skills">{{ skill }}</li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <br>
+        </mat-card>
+</div>

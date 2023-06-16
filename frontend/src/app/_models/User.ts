@@ -1,4 +1,5 @@
 import { Image } from './Image';
+import { Message } from './Message';
 import { Role } from './Role';
 export class User{
     _id?:any
@@ -17,4 +18,5 @@ export class User{
     intercontrat?:boolean
     image?:Image
     roles?:Role[]
+    messages?:Message[]
 }

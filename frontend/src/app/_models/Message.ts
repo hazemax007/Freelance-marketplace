@@ -1,6 +1,10 @@
+import { User } from "./User"
+
 export class Message{
     _id?:any
-    text?:string
-    sender?:string
+    content?:string
+    messageType?:string
+    sender?:User
+    receiver?:User
     timestamp?: any
 }

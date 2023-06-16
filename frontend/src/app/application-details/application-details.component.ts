@@ -36,7 +36,7 @@ export class ApplicationDetailsComponent implements OnInit {
     )
   }
 
-  showResume(){
+  /*showResume(){
     this.applicationService.getResume(this.application.resume).subscribe(
       data => {
         const file = new Blob([data], {type: 'application/pdf'})
@@ -44,7 +44,7 @@ export class ApplicationDetailsComponent implements OnInit {
         console.log(this.pdfURL)
       }
     )
-  }
+  }*/
 
   openEmailForm() {
     const dialogRef = this.dialog.open(EmailFormComponent,);

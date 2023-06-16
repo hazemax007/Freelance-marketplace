@@ -1,0 +1,30 @@
+<div class="listUsers">
+    <mat-card>
+        <div class="row">
+            
+                <mat-card *ngFor="let user of listUsers">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-3">
+                            {{user?.username}}
+                        </div>
+                        <div class="col-3">
+                            {{user?.email}}
+                        </div>
+                        <div class="col-2">
+                            {{user?.firstname}}
+                        </div>
+                        <div class="col-2">
+                            {{user?.lastname}}
+                        </div>
+                        <div class="col-2">
+                            <button mat-raised-button color="warn" (click)="goToUserChat(user?._id)">Go Chatroom</button>
+                        </div>
+                    </div>  
+                </mat-card-content>
+                
+                </mat-card>
+            
+        </div>
+      </mat-card>  
+</div>

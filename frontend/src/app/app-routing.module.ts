@@ -19,6 +19,10 @@ import { RegisterConfirmationComponent } from './register-confirmation/register-
 import { AllImagesComponent } from './all-images/all-images.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { UpdateImageComponent } from './update-image/update-image.component';
+import { ResumeListComponent } from './resume-list/resume-list.component';
+import { ResumeDetailsComponent } from './resume-details/resume-details.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatDetailsComponent } from './chat-details/chat-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -40,6 +44,10 @@ const routes: Routes = [
   { path:'allImages', component:AllImagesComponent },
   { path:'uploadImage/:id', component:UploadImageComponent},
   { path:'updateImage/:imageId/:userId', component:UpdateImageComponent},
+  { path:'resumeList', component:ResumeListComponent},
+  { path:'resumeDetails/:id',component:ResumeDetailsComponent},
+  { path:'chat', component:ChatComponent},
+  { path:'chatDetails/:id', component:ChatDetailsComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

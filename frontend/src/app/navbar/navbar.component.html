@@ -1,38 +1,41 @@
 
-  <mat-toolbar color="warn" routerLinkActive="active">
+  <div class="navbar">
+    <mat-toolbar color="warn" routerLinkActive="active">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" routerLink="/home">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Welyne</span>
-    <button mat-icon-button class="missionButton" routerLink="/missions" *ngIf="isLoggedIn">
+    <span>Freelance Day</span>
+    <button mat-icon-button  routerLink="/missions" *ngIf="isLoggedIn && showFreelancerBoard">
       <mat-label>Mission</mat-label>
     </button>
-    <button mat-icon-button class="candidateButton" routerLink="/listApplications" *ngIf="isLoggedIn">
+    <button mat-icon-button  routerLink="/listApplications" *ngIf="isLoggedIn && showFreelancerBoard">
       <mat-label>Applications</mat-label>
     </button>
-    <button mat-icon-button class="intercontratButton" routerLink="/listIntercontrats" *ngIf="isLoggedIn && showAdminBoard">
-      <mat-label>Intercontracts</mat-label>
+    <button mat-icon-button routerLink="/resumeList" *ngIf="isLoggedIn && showESNBoard">
+      <mat-label>Liste des CV</mat-label>
+    </button>
+    <button mat-icon-button  routerLink="/listIntercontrats" *ngIf="isLoggedIn && showAdminBoard">
+      <mat-label>Liste des intercontrats</mat-label>
     </button>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="chatButton" routerLink="/chat" *ngIf="isLoggedIn">
-      <mat-label>Chat</mat-label>
+    <button mat-icon-button  routerLink="/chat" *ngIf="isLoggedIn">
+      <mat-label>Messagerie</mat-label>
     </button>
-    <button mat-icon-button class="dashboardButton" routerLink="/dashboard" *ngIf="isLoggedIn && showAdminBoard">
-      <mat-label>Dashboard</mat-label>
+    <button mat-icon-button  routerLink="/dashboard" *ngIf="isLoggedIn && showAdminBoard">
+      <mat-label>Tableau de bord</mat-label>
     </button>
-    <button mat-icon-button class="profileButton" (click)="goToProfile(currentUser.id)" *ngIf="isLoggedIn">
-      <mat-label> profile </mat-label>
+    <button mat-icon-button (click)="goToProfile(currentUser.id)" *ngIf="isLoggedIn">
+      <mat-label>Profil</mat-label>
     </button>
-    <button mat-icon-button class="logoutButton" (click)="logout()" *ngIf="isLoggedIn">
-      <mat-label>Logout</mat-label>
+    <button mat-icon-button (click)="logout()" *ngIf="isLoggedIn">
+      <mat-label>Déconnecter</mat-label>
     </button>
-    <button mat-icon-button class="loginButton" routerLink="/login" *ngIf="!isLoggedIn">
-      <mat-label>Login</mat-label>
+    <button mat-icon-button routerLink="/login" *ngIf="!isLoggedIn">
+      <mat-label>Se connecter</mat-label>
     </button>
-    &nbsp;&nbsp;&nbsp;
-    <button mat-icon-button class="registerButton" aria-label="Example icon-button with share icon" 
-    routerLink="/register" *ngIf="!isLoggedIn"> 
-        <mat-label>Register</mat-label>
+    <button mat-icon-button routerLink="/register" *ngIf="!isLoggedIn"> 
+        <mat-label>S'inscrire</mat-label>
     </button>
   </mat-toolbar>
+  </div>
   

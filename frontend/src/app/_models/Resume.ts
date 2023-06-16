@@ -7,7 +7,7 @@ export class Resume{
     email?:any[]
     mobile_no?:any
     name?:any
-    skills:any[]
+    skills?:any[]
     user?:User
-    mission?:Mission
+    project?:Mission
 }

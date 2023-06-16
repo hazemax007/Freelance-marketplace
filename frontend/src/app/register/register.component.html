@@ -59,21 +59,11 @@
                 <h3 style="font-size: x-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 font-weight: bold; font-style: italic; color: coral;">Choose your role(s)</h3>
                 <ul>
+                  
                   <li>
                     <div class="form-group">
                       <input class="example-margin" 
-                      type="checkbox" 
-                      name="roles" 
-                      value="admin" 
-                      id="adminRole" 
-                      (change)="handleRoleChange($event)" />
-                      <mat-label style="font-size: medium;" for="adminRole">Admin</mat-label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-group">
-                      <input class="example-margin" 
-                      type="checkbox" 
+                      type="radio" 
                       name="roles" 
                       value="freelancer" 
                       id="freelancerRole" 
@@ -84,7 +74,7 @@
                   <li>
                     <div class="form-group">
                       <input class="example-margin" 
-                      type="checkbox" 
+                      type="radio" 
                       name="roles" 
                       value="esn" 
                       id="esnRole" 
@@ -95,23 +85,12 @@
                   <li>
                     <div class="form-group">
                       <input class="example-margin" 
-                      type="checkbox" 
+                      type="radio" 
                       name="roles" 
                       value="company" 
                       id="companyRole" 
                       (change)="handleRoleChange($event)" />
                       <mat-label style="font-size: medium;" for="companyRole">Company</mat-label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-group">
-                      <input class="example-margin" 
-                      type="checkbox" 
-                      name="roles" 
-                      value="user" 
-                      id="userRole" 
-                      (change)="handleRoleChange($event)" />
-                      <mat-label style="font-size: medium;" for="userRole">User</mat-label>
                     </div>
                   </li>
                 </ul>
