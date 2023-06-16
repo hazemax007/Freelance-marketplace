@@ -17,7 +17,6 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
@@ -26,8 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser())
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+
+
 const db = require("./app/models");
 const Role = db.role;
 //const Message = db.message
@@ -63,9 +62,34 @@ require("./app/routes/rating.routes")(app);
 require("./app/routes/message.routes")(app);
 require("./app/routes/resume.routes")(app);
 
+const http = require('http');
+
+
 // set port, listen for requests
+const SOCKET_PORT = 8081
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+
+const server = http.createServer(app);
+const {Server} = require('socket.io');
+const io = new Server({
+  cors: {
+    origin: '*',
+    methods: ['POST']
+  }
+});
+
+// app.post('/socket_io', async (req, res) => {
+//   try {
+//     io.emit(req.body.event, req.body.message);
+//     res.status(200).send('socket triggered');
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
+
+
+
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
@@ -124,20 +148,10 @@ app.listen(PORT, () => {
     }
   });
 
-  io.on('connection', (socket) => {
-    socket.on('join', (data) => {
-        socket.join(data.room);
-        socket.broadcast.to(data.room).emit('user joined');
-    });
-
-    socket.on('message', (data) => {
-        io.in(data.room).emit('new message', {user: data.user, message: data.message});
-    });
-});
-
 
   app.use('/images', express.static(path.join('images')));
 
   app.use('/api/test/images', imagesRoutes);
 
 }
+

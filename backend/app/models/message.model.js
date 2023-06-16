@@ -4,7 +4,16 @@ const mongoose = require("mongoose");
       "message",
       new mongoose.Schema(
         {
-          text:String,
+          content:String,
+          messageType:String,
+          sender:{
+            type: mongoose.Schema.Types.ObjectId,
+              ref: "User"
+          },
+          receiver:{
+            type: mongoose.Schema.Types.ObjectId,
+              ref: "User"
+          },
           timestamp: { type: Date, default: Date.now },
         },
       )

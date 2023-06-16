@@ -5,6 +5,12 @@ module.exports = app => {
     const db = require('../models')
     const Message = db.message
 
-    router.get('/',messageController.getMessage)
+    //router.get('/',messageController.getMessage)
+    router.post('/:senderId/:receiverId', messageController.postMessage)
+    
+    router.get('/',messageController.getAllMessages)
+
+    router.get('/chatMessages/:senderId/:receiverId',messageController.getChatMessages)
+    
     app.use('/api/test/message', router);
 }

@@ -10,6 +10,8 @@ module.exports = app => {
 
     router.get('/',resumeController.getAllResumes)
 
+    router.get('/:id',resumeController.getResumeById)
+
     router.post("/:userId/:projectId" ,upload.single('resume'),resumeController.resumeParser)
 
 

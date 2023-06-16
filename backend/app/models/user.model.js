@@ -35,6 +35,12 @@ const User = mongoose.model(
         ref : "application"
       }
     ],
+    messages: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "message"
+      }
+    ],
     resumes: [
       {
         type: mongoose.Types.ObjectId,

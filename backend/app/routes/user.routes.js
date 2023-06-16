@@ -29,5 +29,7 @@ module.exports = app => {
 
     router.delete('/deleteIntercontrat/:id', userController.defineIntercontrat)
 
+    router.get('/fetchUsers/:connectedUserId', userController.fetchUsers)
+
     app.use('/api/test/users', router);
 };

@@ -149,3 +149,14 @@ exports.deleteIntercontrat = async (req,res) =>{
         });
       });
 }
+
+exports.fetchUsers = async (req,res) =>{
+  try {
+    const {connectedUserId} = req.params; // Retrieve the ID of the connected user
+    const users = await User.find({ _id: { $ne: connectedUserId } })
+    .populate('messages'); // Fetch all users except the connected user
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+}
